@@ -1,0 +1,62 @@
+---
+description: FSD import direction, relative paths, and public API usage
+globs: "src/**/*.{ts,tsx,js,jsx}"
+alwaysApply: false
+---
+
+# FSD Imports
+
+Основной источник: `@FSD[](https://fsd.how/llms-full.txt)`.
+Все решения по импортам сначала сверяй с `@FSD`, затем с этим правилом.
+
+## Главный закон
+
+Импортировать можно только из слоев строго ниже:
+`app -> pages -> widgets -> features -> entities -> shared`
+
+## Что разрешено
+
+- Внутри одного слайса используй относительные импорты с полным путем.
+- Между разными слайсами используй абсолютные импорты через alias и только через `Public API`.
+- Внутри `app` и `shared` импорты между сегментами допустимы, потому что эти слои не имеют слайсов.
+
+## Что запрещено по умолчанию
+
+- Импорт вверх по слоям.
+- Импорт в другой слайс того же слоя как в обычную практику.
+- Deep import во внутренности чужого слайса.
+- Импорт из собственного `index.ts` внутри того же слайса.
+
+## Канонические примеры
+
+```ts
+// GOOD: ниже по слою
+import { Button } from '@/shared/ui/button';
+import { UserCard } from '@/entities/user';
+
+// GOOD: внутри того же слайса через relative path
+import { loginSchema } from '../model/login';
+
+// BAD: upward import
+import { LoginForm } from '@/features/auth'; // inside entities/*
+
+// BAD: same-layer cross-import
+import { addToCart } from '@/features/cart'; // inside features/checkout/*
+
+// BAD: bypass Public API
+import { LoginForm } from '@/features/auth/ui/LoginForm';
+
+// BAD: self-import through barrel creates circular risks
+import { login } from '../';
+```
+
+## Если same-layer зависимость все же нужна
+
+Предпочитай такой порядок решений:
+
+1. Объединить слайсы, если они фактически изменяются вместе.
+2. Вынести общую доменную часть в `entities`.
+3. Скомпоновать слайсы в более верхнем слое (`pages` или `app`).
+4. Допустить связь только как осознанное исключение через `Public API`.
+
+`@x` допустим только для `entities` и только как last resort.

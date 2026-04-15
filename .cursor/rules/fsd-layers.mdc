@@ -1,0 +1,60 @@
+---
+description: FSD layer semantics and code placement rules
+globs: "src/**/*.{ts,tsx,js,jsx}"
+alwaysApply: false
+---
+
+# FSD Layers
+
+Основной источник: `@FSD[](https://fsd.how/llms-full.txt)`.
+Для выбора места кода сначала сверяйся с `@FSD`, затем с этим правилом.
+
+## Канонический порядок слоев
+
+`app -> pages -> widgets -> features -> entities -> shared`
+
+`processes` в актуальном FSD считается deprecated и для нового кода не используется.
+
+## Семантика слоев
+
+- `app` — глобальная сборка приложения: providers, routes, store setup, global styles, entrypoint.
+- `pages` — экран или route-level composition. Здесь допустимо хранить много локального кода, если он не переиспользуется.
+- `widgets` — крупные самостоятельные UI-блоки, особенно если они встречаются на нескольких страницах.
+- `features` — важные пользовательские действия: login, add-to-cart, leave-comment.
+- `entities` — бизнес-сущности: user, post, order, token pair, portfolio item.
+- `shared` — инфраструктурный фундамент без бизнес-логики: UI-kit, helpers, base api, config, routes, i18n.
+
+## Практические правила размещения
+
+- Не опускай код в `features` или `entities` только потому, что он "звучит важно".
+- Если блок нужен одной странице, держи его в `pages/...`.
+- Если это переиспользуемый большой блок интерфейса, поднимай в `widgets`.
+- Если это переиспользуемое действие пользователя, выноси в `features`.
+- Если это стабильная доменная модель, которую используют разные части продукта, выноси в `entities`.
+- Если это утилита, UI-атом, API client или конфиг, отправляй в `shared`.
+
+## App и Shared — исключения
+
+`app` и `shared` не имеют бизнес-слайсов. Внутри них можно организовывать код сегментами напрямую:
+
+```text
+src/shared/ui/button/
+src/shared/api/base-client.ts
+src/app/routes/router.tsx
+```
+
+## Примеры
+
+```ts
+// GOOD: специфичный для страницы блок остается в pages
+src/pages/exchange/ui/MarketsPanel.tsx
+
+// GOOD: общий доменный тип и логика живут в entities
+src/entities/asset/model/asset.ts
+
+// GOOD: базовый HTTP client живет в shared
+src/shared/api/client.ts
+
+// BAD: доменная логика в shared
+src/shared/lib/calculate-portfolio-profit.ts
+```

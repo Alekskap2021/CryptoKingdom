@@ -1,0 +1,54 @@
+---
+description: FSD forbidden import anti-patterns and safer alternatives
+globs: "src/**/*.{ts,tsx,js,jsx}"
+alwaysApply: false
+---
+
+# FSD Forbidden Imports
+
+Основной источник: `@FSD[](https://fsd.how/llms-full.txt)`.
+Если импорт выглядит спорно, сначала проверь `@FSD`, затем это правило.
+
+## Запрещенные или нежелательные паттерны
+
+- Импорт вверх по слоям.
+- Импорт между обычными слайсами одного слоя как повседневная практика.
+- Deep import во внутреннюю структуру чужого слайса.
+- Импорт `store`, `model`, `lib`, `api` другого слайса в обход `Public API`.
+- Импорт из собственного barrel-файла внутри того же слайса.
+- Использование `@x` вне `entities`.
+- Wildcard re-export как способ "открыть все" наружу.
+
+## Антипаттерны
+
+```ts
+// BAD: upward import
+import { CheckoutForm } from '@/features/checkout'; // inside entities/order/*
+
+// BAD: deep import to internals
+import { authStore } from '@/features/auth/model/store';
+
+// BAD: same-layer cross-import
+import { ProductCard } from '@/widgets/product-card'; // inside widgets/sidebar/*
+
+// BAD: self-barrel import
+import { loadProfile } from '../';
+
+// BAD: @x outside entities
+import { Something } from '@/features/auth/@x/profile';
+```
+
+## Предпочтительные замены
+
+- Объедини два тесно связанных слайса в один.
+- Подними композицию в `pages` или `app`.
+- Вынеси общую доменную часть в `entities`.
+- Экспортируй наружу только безопасную поверхность через `index.ts`.
+- Для неизбежных entity cross-imports используй только явный `@x`.
+
+## Проверка перед новым импортом
+
+1. Это импорт в тот же слайс? Тогда путь должен быть relative.
+2. Это импорт в другой слайс? Тогда нужен абсолютный путь и только `Public API`.
+3. Это same-layer зависимость? Сначала ищи архитектурную альтернативу.
+4. Это `entities` cross-reference? `@x` допустим только как осознанное исключение.

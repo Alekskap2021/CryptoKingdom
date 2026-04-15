@@ -1,0 +1,62 @@
+---
+description: FSD public API design with index.ts re-exports and boundaries
+globs: "src/**/*.{ts,tsx,js,jsx}"
+alwaysApply: false
+---
+
+# FSD Public API
+
+Основной источник: `@FSD[](https://fsd.how/llms-full.txt)`.
+Все решения о `index.ts`, экспортируемой поверхности и `@x` сначала сверяй с `@FSD`.
+
+## Базовое правило
+
+Каждый слайс должен иметь явный `Public API`, обычно через `index.ts`.
+Для `app` и `shared` публичный API определяется на уровне сегментов или подпапок.
+
+## Что экспортировать
+
+- Только то, что действительно нужно внешним потребителям.
+- Стабильные entry points: публичные компоненты, hooks, actions, selectors, типы.
+- Минимальную поверхность, чтобы refactor внутренностей не ломал внешний код.
+
+## Что не экспортировать
+
+- Внутренние helper-функции без внешнего контракта.
+- Промежуточные store детали, внутренние schemas, implementation-specific utils.
+- Все подряд через `export *`.
+
+## GOOD / BAD
+
+```ts
+// GOOD
+// features/auth/index.ts
+export { LoginForm } from './ui/LoginForm';
+export { useAuth } from './model/useAuth';
+export type { AuthSession } from './model/session';
+
+// BAD
+export * from './ui/LoginForm';
+export * from './model';
+export * from './lib';
+```
+
+## Важные ограничения
+
+- Из другого слайса импортируй только из его `Public API`.
+- Изнутри того же слайса не импортируй через собственный `index.ts`; используй relative path.
+- Не делай лишние `index.ts` на каждом уровне сегментов без причины.
+- Для `shared/ui` и `shared/lib` допустимы отдельные `index.ts` на уровне каждой библиотеки или компонента вместо одного большого barrel.
+
+## `@x` для entities
+
+Если связь между двумя сущностями неизбежна, `entities/A/@x/B.ts` может выступать отдельным публичным API только для `entities/B`.
+Это исключение, а не стандартный способ переиспользования.
+
+```ts
+// GOOD
+import type { Song } from '@/entities/song/@x/artist';
+
+// BAD
+import type { Song } from '@/entities/song/model/song';
+```

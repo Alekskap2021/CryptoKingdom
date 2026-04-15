@@ -1,0 +1,506 @@
+{
+  "projectName": "bybit-admin-panel",
+  "totalTasks": 46,
+  "tasks": [
+    {
+      "id": "001",
+      "title": "Аудит стартового шаблона TanStack Start",
+      "description": "Проверить текущий starter, зафиксировать уже готовые части роутинга, SSR shell, Query и ограничения исходной структуры проекта",
+      "dependencies": [],
+      "status": "pending",
+      "estimatedHours": 0.5
+    },
+    {
+      "id": "002",
+      "title": "Зафиксировать техническое ТЗ MVP",
+      "description": "Описать scope MVP, обязательный стек, модули, ограничения безопасности и критерии приемки",
+      "dependencies": [
+        "001"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "003",
+      "title": "Сформировать env-контракт приложения",
+      "description": "Определить обязательные переменные окружения для auth, БД, шифрования и Bybit endpoints",
+      "dependencies": [
+        "001"
+      ],
+      "status": "pending",
+      "estimatedHours": 0.5
+    },
+    {
+      "id": "004",
+      "title": "Спроектировать карту маршрутов админ-панели",
+      "description": "Определить public, auth и protected routes, а также page-level ownership для dashboard и settings",
+      "dependencies": [
+        "001"
+      ],
+      "status": "pending",
+      "estimatedHours": 0.5
+    },
+    {
+      "id": "005",
+      "title": "Подготовить server-only config с Zod",
+      "description": "Создать серверный модуль конфигурации, который читает .env и валидирует значения до старта приложения",
+      "dependencies": [
+        "003"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "006",
+      "title": "Настроить базовые UI primitives и design tokens",
+      "description": "Подготовить базовые layout/UI primitives на Tailwind и BaseUI для форм, таблиц, панелей и shell-компонентов",
+      "dependencies": [
+        "001"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "007",
+      "title": "Добавить глобальные error, pending и not-found состояния",
+      "description": "Подготовить app-wide fallback компоненты для ошибок роутинга, загрузки и отсутствующих страниц",
+      "dependencies": [
+        "004",
+        "006"
+      ],
+      "status": "pending",
+      "estimatedHours": 0.5
+    },
+    {
+      "id": "008",
+      "title": "Инициализировать базовую конфигурацию Better Auth",
+      "description": "Создать серверную auth-конфигурацию, адаптер хранилища и базовую схему сессий и пользователей",
+      "dependencies": [
+        "005"
+      ],
+      "status": "pending",
+      "estimatedHours": 1.5
+    },
+    {
+      "id": "009",
+      "title": "Подготовить схему БД для auth и 2FA",
+      "description": "Определить таблицы пользователей, сессий, факторов 2FA и связанных технических сущностей",
+      "dependencies": [
+        "008"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "010",
+      "title": "Реализовать регистрацию пользователя",
+      "description": "Собрать server action и валидацию формы регистрации с корректной обработкой ошибок и дубликатов",
+      "dependencies": [
+        "008",
+        "009"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "011",
+      "title": "Реализовать логин, logout и session fetch",
+      "description": "Настроить server actions и session retrieval для входа, выхода и чтения текущей сессии",
+      "dependencies": [
+        "008",
+        "009"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "012",
+      "title": "Реализовать backend-часть подключения 2FA",
+      "description": "Добавить генерацию секрета TOTP, подтверждение подключения и хранение статуса 2FA на сервере",
+      "dependencies": [
+        "011"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "013",
+      "title": "Реализовать backend-часть проверки 2FA при входе",
+      "description": "Добавить проверку TOTP challenge в login flow и корректные статусы для UI",
+      "dependencies": [
+        "012"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "014",
+      "title": "Пробросить auth-состояние в router context",
+      "description": "Сделать текущую сессию и пользователя доступными для loaders, beforeLoad и protected layouts",
+      "dependencies": [
+        "011"
+      ],
+      "status": "pending",
+      "estimatedHours": 0.5
+    },
+    {
+      "id": "015",
+      "title": "Настроить protected layout и редиректы",
+      "description": "Защитить dashboard и settings маршруты через beforeLoad и redirect на login",
+      "dependencies": [
+        "004",
+        "014"
+      ],
+      "status": "pending",
+      "estimatedHours": 0.5
+    },
+    {
+      "id": "016",
+      "title": "Собрать UI страниц логина и регистрации",
+      "description": "Сделать auth-страницы с Tailwind, BaseUI и Zod-валидацией для login/register сценариев",
+      "dependencies": [
+        "006",
+        "010",
+        "011"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "017",
+      "title": "Собрать UI flow двухфакторной аутентификации",
+      "description": "Добавить экран подключения 2FA, экран ввода TOTP и состояния подтверждения/ошибок",
+      "dependencies": [
+        "013",
+        "016"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "018",
+      "title": "Создать каркас dashboard shell",
+      "description": "Подготовить защищенный layout с header, navigation, content area и местом для mobile navigation",
+      "dependencies": [
+        "015",
+        "006"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "019",
+      "title": "Подготовить страницу настроек профиля",
+      "description": "Собрать базовую settings/profile страницу с отображением аккаунта и управлением 2FA статусом",
+      "dependencies": [
+        "017",
+        "018"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "020",
+      "title": "Спроектировать модель хранения Bybit API keys",
+      "description": "Определить таблицу, поля метаданных, формат шифрования и ограничения на использование ключей",
+      "dependencies": [
+        "005",
+        "011"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "021",
+      "title": "Реализовать серверное шифрование и дешифрование API keys",
+      "description": "Подготовить утилиты безопасного хранения Bybit credentials с использованием server-side encryption key",
+      "dependencies": [
+        "020"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "022",
+      "title": "Реализовать CRUD server actions для API keys",
+      "description": "Добавить создание, редактирование, удаление и чтение API keys с серверной валидацией и авторизацией",
+      "dependencies": [
+        "021"
+      ],
+      "status": "pending",
+      "estimatedHours": 1.5
+    },
+    {
+      "id": "023",
+      "title": "Добавить серверную проверку валидности Bybit ключей",
+      "description": "Проверять ключи тестовым приватным запросом и возвращать нормализованный результат проверки",
+      "dependencies": [
+        "022"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "024",
+      "title": "Собрать UI управления API keys",
+      "description": "Подготовить settings/api-keys страницу с формой, списком ключей, status badges и действиями CRUD",
+      "dependencies": [
+        "018",
+        "022",
+        "023"
+      ],
+      "status": "pending",
+      "estimatedHours": 1.5
+    },
+    {
+      "id": "025",
+      "title": "Подготовить общий REST client для Bybit v5",
+      "description": "Сделать axios wrapper для публичных и приватных запросов, подписи и нормализованной обработки ошибок",
+      "dependencies": [
+        "005",
+        "021"
+      ],
+      "status": "pending",
+      "estimatedHours": 1.5
+    },
+    {
+      "id": "026",
+      "title": "Описать внутренние типы и Zod-схемы ответов Bybit",
+      "description": "Сконвертировать ключевые ответы Bybit в внутренние typed модели для balance, positions, orders и executions",
+      "dependencies": [
+        "025"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "027",
+      "title": "Создать query factories для приватных данных аккаунта",
+      "description": "Подготовить query options и серверные fetchers для баланса, позиций, открытых ордеров и истории",
+      "dependencies": [
+        "026"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "028",
+      "title": "Добавить market data service для symbols и klines",
+      "description": "Сделать отдельный слой получения рыночных данных и нормализации свечей для графика",
+      "dependencies": [
+        "025",
+        "026"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "029",
+      "title": "Реализовать private WebSocket manager",
+      "description": "Создать менеджер подключения к приватным Bybit streams для балансов, позиций и ордеров",
+      "dependencies": [
+        "025",
+        "021"
+      ],
+      "status": "pending",
+      "estimatedHours": 1.5
+    },
+    {
+      "id": "030",
+      "title": "Реализовать синхронизацию WebSocket с Query cache",
+      "description": "Обновлять query cache по событиям WebSocket без разрозненного локального состояния в компонентах",
+      "dependencies": [
+        "027",
+        "029"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "031",
+      "title": "Собрать overview страницу dashboard",
+      "description": "Подготовить главную панель с KPI-карточками, последним обновлением и server/client loading states",
+      "dependencies": [
+        "018",
+        "027",
+        "030"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "032",
+      "title": "Собрать виджет real-time баланса",
+      "description": "Отобразить баланс аккаунта с реактивным обновлением и нормальным empty/error состоянием",
+      "dependencies": [
+        "031"
+      ],
+      "status": "pending",
+      "estimatedHours": 0.5
+    },
+    {
+      "id": "033",
+      "title": "Собрать таблицу позиций на TanStack Table",
+      "description": "Сделать positions table с колонками PnL, size, leverage и визуальными статусами",
+      "dependencies": [
+        "031"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "034",
+      "title": "Собрать таблицу открытых ордеров на TanStack Table",
+      "description": "Показать open orders с сортировкой, статусами и заготовкой под быстрые действия cancel/edit",
+      "dependencies": [
+        "031"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "035",
+      "title": "Реализовать server action создания ордера",
+      "description": "Добавить защищенный серверный сценарий place order с валидацией payload и нормализацией ответа",
+      "dependencies": [
+        "025",
+        "026"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "036",
+      "title": "Собрать UI формы создания и редактирования ордера",
+      "description": "Подготовить order form с выбором символа, side, type, qty, price и валидацией через Zod",
+      "dependencies": [
+        "018",
+        "035"
+      ],
+      "status": "pending",
+      "estimatedHours": 1.5
+    },
+    {
+      "id": "037",
+      "title": "Реализовать server actions отмены и редактирования ордеров",
+      "description": "Добавить cancel/amend сценарии с безопасной обработкой ошибок Bybit и обновлением кэша",
+      "dependencies": [
+        "025",
+        "026",
+        "034"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "038",
+      "title": "Подключить график инструмента",
+      "description": "Интегрировать TradingView Lightweight Charts для отображения свечей и базового interaction flow",
+      "dependencies": [
+        "028",
+        "031"
+      ],
+      "status": "pending",
+      "estimatedHours": 1.5
+    },
+    {
+      "id": "039",
+      "title": "Добавить управление символом и таймфреймом графика",
+      "description": "Реализовать контролы выбора symbol/timeframe и связать их с загрузкой candles",
+      "dependencies": [
+        "038"
+      ],
+      "status": "pending",
+      "estimatedHours": 0.5
+    },
+    {
+      "id": "040",
+      "title": "Собрать страницу истории сделок",
+      "description": "Показать trade history таблицу с фильтрами по symbol, side и диапазону дат",
+      "dependencies": [
+        "018",
+        "027"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "041",
+      "title": "Реализовать CSV export для trade history",
+      "description": "Добавить серверный экспорт сделок в CSV и клиентский сценарий скачивания файла",
+      "dependencies": [
+        "040"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "042",
+      "title": "Адаптировать shell и ключевые страницы под mobile",
+      "description": "Подготовить mobile navigation, responsive layouts и деградацию сложных таблиц для узких экранов",
+      "dependencies": [
+        "031",
+        "032",
+        "033",
+        "034",
+        "036",
+        "038",
+        "040"
+      ],
+      "status": "pending",
+      "estimatedHours": 1.5
+    },
+    {
+      "id": "043",
+      "title": "Добавить тесты для auth и validation flows",
+      "description": "Покрыть критичные сценарии регистрации, логина, 2FA и server-side Zod validation",
+      "dependencies": [
+        "016",
+        "017",
+        "019"
+      ],
+      "status": "pending",
+      "estimatedHours": 1.5
+    },
+    {
+      "id": "044",
+      "title": "Добавить тесты для Bybit services и order workflows",
+      "description": "Проверить нормализацию Bybit ответов, WebSocket sync и критичные order actions",
+      "dependencies": [
+        "030",
+        "035",
+        "037",
+        "041"
+      ],
+      "status": "pending",
+      "estimatedHours": 1.5
+    },
+    {
+      "id": "045",
+      "title": "Подготовить .env.example и Dockerfile",
+      "description": "Описать пример env-файла и контейнеризацию приложения для локального и staging запуска",
+      "dependencies": [
+        "005"
+      ],
+      "status": "pending",
+      "estimatedHours": 1
+    },
+    {
+      "id": "046",
+      "title": "Обновить README, провести ревью и финальную полировку",
+      "description": "Задокументировать setup flow, архитектуру и ограничения безопасности, затем выполнить финальный review и UX polish pass",
+      "dependencies": [
+        "002",
+        "024",
+        "031",
+        "041",
+        "042",
+        "043",
+        "044",
+        "045"
+      ],
+      "status": "pending",
+      "estimatedHours": 1.5
+    }
+  ]
+}

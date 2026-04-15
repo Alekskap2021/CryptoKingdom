@@ -1,0 +1,70 @@
+---
+description: FSD segment naming and responsibilities inside slices
+globs: "src/**/*.{ts,tsx,js,jsx}"
+alwaysApply: false
+---
+
+# FSD Segments
+
+Основной источник: `@FSD[](https://fsd.how/llms-full.txt)`.
+Перед созданием новых сегментов сначала сверяйся с `@FSD`.
+
+## Стандартные сегменты
+
+- `ui` — визуальное представление: компоненты, стили, layout-поведение, display helpers.
+- `api` — запросы, DTO, мапперы ответов, интеграция с backend.
+- `model` — состояние, схемы, бизнес-правила, валидация, events, selectors.
+- `lib` — внутренние библиотеки и утилиты, нужные этому слайсу.
+- `config` — локальная конфигурация и feature flags.
+
+## Как использовать сегменты правильно
+
+- Сегменты живут внутри слайса и делят код по технической роли.
+- Имя слайса отвечает за бизнес-смысл, имя сегмента — за техническое назначение.
+- В `app` и `shared` сегменты могут быть верхним уровнем, потому что там нет слайсов.
+- Новые сегменты допустимы, но имя должно описывать назначение, а не просто тип сущностей.
+
+## Плохие имена сегментов
+
+Избегай общих названий вроде `components`, `hooks`, `utils`, `types`.
+Они описывают форму кода, но не помогают понять его ответственность.
+
+```text
+// BAD
+entities/user/types.ts
+shared/hooks/
+features/auth/components/
+
+// GOOD
+entities/user/model/user.ts
+shared/lib/date/
+features/auth/ui/
+```
+
+## Практический шаблон слайса
+
+```text
+src/features/auth/
+  index.ts
+  ui/
+  model/
+  api/
+  lib/
+  config/
+```
+
+## Правило именования файлов
+
+Называй файлы по домену или сценарию, а не по технической роли.
+
+```text
+// GOOD
+model/session.ts
+model/portfolio.ts
+api/fetch-wallet.ts
+
+// BAD
+model/types.ts
+lib/helpers.ts
+api/utils.ts
+```
