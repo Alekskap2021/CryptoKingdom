@@ -1,10 +1,10 @@
 import { useRouteContext } from "@tanstack/react-router";
 import { Plus } from "lucide-react";
 import { useState } from "react";
+import { Button } from "@/shared/ui";
 import { ApiKeyAddForm } from "./ApiKeyAddForm";
 import { ApiKeyEmptyPlaceholder } from "./ApiKeyEmptyPlaceholder";
 import { ApiKeyList } from "./ApiKeyList";
-import { Button } from "#/shared/ui";
 
 export const ManageApiKey = () => {
  const { apiKeysList } = useRouteContext({

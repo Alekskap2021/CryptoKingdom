@@ -11,8 +11,8 @@ import { Download } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { exportTradesCsv, fetchExecutions, queryKeys, type Execution } from "@/shared/api/bybit";
 import { Badge, Button, Card, CardHeader, CardTitle, DataTable, Input, Spinner } from "@/shared/ui";
-import type { ApiKeyRecord } from "#/features/ManageBybitApiKey";
-import { listApiKeys } from "#/features/ManageBybitApiKey";
+import type { ApiKeyRecord } from "@/features/ManageBybitApiKey";
+import { listApiKeys } from "@/features/ManageBybitApiKey";
 
 function HistoryPage() {
  const [keys, setKeys] = useState<ApiKeyRecord[]>([]);

@@ -50,7 +50,7 @@
    "status": "completed",
    "completedAt": "2026-04-15",
    "estimatedHours": 1,
-   "notes": "Создан src/shared/config/server.ts — серверный модуль, который при первом импорте валидирует process.env через envSchema и экспортирует типизированный объект env. Включает runtime guard (typeof process check) и форматированные сообщения об ошибках валидации. Не экспортируется через public API index.ts, чтобы не попасть в клиентский бандл — серверный код импортирует напрямую из #/shared/config/server."
+   "notes": "Создан src/shared/config/server.ts — серверный модуль, который при первом импорте валидирует process.env через envSchema и экспортирует типизированный объект env. Включает runtime guard (typeof process check) и форматированные сообщения об ошибках валидации. Не экспортируется через public API index.ts, чтобы не попасть в клиентский бандл — серверный код импортирует напрямую из @/shared/config/server."
   },
   {
    "id": "006",

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { listApiKeys, ManageApiKey } from "#/features/ManageBybitApiKey";
+import { listApiKeys, ManageApiKey } from "@/features/ManageBybitApiKey";
 
 function ApiKeysPage() {
  return <ManageApiKey />;

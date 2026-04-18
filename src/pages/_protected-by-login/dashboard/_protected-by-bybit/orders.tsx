@@ -30,8 +30,8 @@ import {
  Label,
  Spinner,
 } from "@/shared/ui";
-import type { ApiKeyRecord } from "#/features/ManageBybitApiKey";
-import { listApiKeys } from "#/features/ManageBybitApiKey";
+import type { ApiKeyRecord } from "@/features/ManageBybitApiKey";
+import { listApiKeys } from "@/features/ManageBybitApiKey";
 
 function OrdersPage() {
  const queryClient = useQueryClient();

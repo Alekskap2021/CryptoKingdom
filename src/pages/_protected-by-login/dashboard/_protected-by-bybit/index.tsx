@@ -18,8 +18,8 @@ import {
  type Position,
 } from "@/shared/api/bybit";
 import { Badge, Card, CardHeader, CardTitle, DataTable, Spinner } from "@/shared/ui";
-import type { ApiKeyRecord } from "#/features/ManageBybitApiKey/api/api-keys.schema.ts";
-import { listApiKeys } from "#/features/ManageBybitApiKey/api/api-keys.actions.ts";
+import { listApiKeys } from "@/features/ManageBybitApiKey/api/api-keys.actions.ts";
+import type { ApiKeyRecord } from "@/features/ManageBybitApiKey/api/api-keys.schema.ts";
 
 function DashboardOverviewPage() {
  const [activeKey, setActiveKey] = useState<ApiKeyRecord | null>(null);

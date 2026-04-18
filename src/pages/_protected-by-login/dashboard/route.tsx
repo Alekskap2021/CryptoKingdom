@@ -1,5 +1,5 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
-import { Navbar } from "#/widgets/Navbar";
+import { Navbar } from "@/widgets/Navbar";
 
 export const Route = createFileRoute("/_protected-by-login/dashboard")({
  component: DashboardLayout,

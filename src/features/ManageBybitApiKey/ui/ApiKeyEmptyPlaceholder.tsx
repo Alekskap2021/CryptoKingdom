@@ -1,5 +1,5 @@
-import { cn } from "#/shared/lib/cn";
-import { Card } from "#/shared/ui";
+import { cn } from "@/shared/lib/cn";
+import { Card } from "@/shared/ui";
 
 export const ApiKeyEmptyPlaceholder = () => {
  return (

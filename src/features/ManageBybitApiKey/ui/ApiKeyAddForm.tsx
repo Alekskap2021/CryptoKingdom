@@ -1,6 +1,6 @@
 import { type FormEvent, useState } from "react";
+import { Button, Card, CardHeader, CardTitle, Input, Label } from "@/shared/ui";
 import { createApiKey } from "../api/api-keys.actions.ts";
-import { Button, Card, CardHeader, CardTitle, Input, Label } from "#/shared/ui";
 
 interface ApiKeyAddFormProps {
  onCancel: () => void;

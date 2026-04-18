@@ -1,9 +1,9 @@
 import { Link, useNavigate, useRouteContext } from "@tanstack/react-router";
 import { LogOut } from "lucide-react";
+import { cn } from "@/shared/lib/cn";
+import { Button } from "@/shared/ui";
 import { authClient } from "@/features/Authentication";
 import { navbarConfig } from "../configs/navbarConfig";
-import { cn } from "#/shared/lib/cn";
-import { Button } from "#/shared/ui";
 
 interface NavbarProps {
  className?: string;
