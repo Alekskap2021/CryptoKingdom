@@ -5,7 +5,6 @@ import {
  History,
  KeyRound,
  LayoutDashboard,
- Settings,
  ShoppingCart,
 } from "lucide-react";
 import type { LucideIcon } from "@/shared/model/icon.ts";
@@ -57,11 +56,6 @@ export const navbarConfig: Array<NavGroup> = [
  },
  {
   groupItems: [
-   {
-    icon: Settings,
-    label: "Profile",
-    linkOptions: { to: "/dashboard/settings/profile" },
-   },
    {
     icon: KeyRound,
     label: "API Keys",

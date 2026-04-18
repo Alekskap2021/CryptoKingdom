@@ -19,7 +19,6 @@ import { Route as ProtectedByLoginDashboardNoBybitApiKeyRouteImport } from './pa
 import { Route as ProtectedByLoginDashboardProtectedByBybitRouteRouteImport } from './pages/_protected-by-login/dashboard/_protected-by-bybit/route'
 import { Route as ProtectedByLoginDashboardProtectedByBybitIndexRouteImport } from './pages/_protected-by-login/dashboard/_protected-by-bybit/index'
 import { Route as ProtectedByLoginDashboardSettingsTwoFactorRouteImport } from './pages/_protected-by-login/dashboard/settings/two-factor'
-import { Route as ProtectedByLoginDashboardSettingsProfileRouteImport } from './pages/_protected-by-login/dashboard/settings/profile'
 import { Route as ProtectedByLoginDashboardSettingsApiKeysRouteImport } from './pages/_protected-by-login/dashboard/settings/api-keys'
 import { Route as ProtectedByLoginDashboardProtectedByBybitOrdersRouteImport } from './pages/_protected-by-login/dashboard/_protected-by-bybit/orders'
 import { Route as ProtectedByLoginDashboardProtectedByBybitHistoryRouteImport } from './pages/_protected-by-login/dashboard/_protected-by-bybit/history'
@@ -78,12 +77,6 @@ const ProtectedByLoginDashboardSettingsTwoFactorRoute =
     path: '/settings/two-factor',
     getParentRoute: () => ProtectedByLoginDashboardRouteRoute,
   } as any)
-const ProtectedByLoginDashboardSettingsProfileRoute =
-  ProtectedByLoginDashboardSettingsProfileRouteImport.update({
-    id: '/settings/profile',
-    path: '/settings/profile',
-    getParentRoute: () => ProtectedByLoginDashboardRouteRoute,
-  } as any)
 const ProtectedByLoginDashboardSettingsApiKeysRoute =
   ProtectedByLoginDashboardSettingsApiKeysRouteImport.update({
     id: '/settings/api-keys',
@@ -120,7 +113,6 @@ export interface FileRoutesByFullPath {
   '/dashboard/history': typeof ProtectedByLoginDashboardProtectedByBybitHistoryRoute
   '/dashboard/orders': typeof ProtectedByLoginDashboardProtectedByBybitOrdersRoute
   '/dashboard/settings/api-keys': typeof ProtectedByLoginDashboardSettingsApiKeysRoute
-  '/dashboard/settings/profile': typeof ProtectedByLoginDashboardSettingsProfileRoute
   '/dashboard/settings/two-factor': typeof ProtectedByLoginDashboardSettingsTwoFactorRoute
   '/dashboard/': typeof ProtectedByLoginDashboardProtectedByBybitIndexRoute
 }
@@ -135,7 +127,6 @@ export interface FileRoutesByTo {
   '/dashboard/history': typeof ProtectedByLoginDashboardProtectedByBybitHistoryRoute
   '/dashboard/orders': typeof ProtectedByLoginDashboardProtectedByBybitOrdersRoute
   '/dashboard/settings/api-keys': typeof ProtectedByLoginDashboardSettingsApiKeysRoute
-  '/dashboard/settings/profile': typeof ProtectedByLoginDashboardSettingsProfileRoute
   '/dashboard/settings/two-factor': typeof ProtectedByLoginDashboardSettingsTwoFactorRoute
 }
 export interface FileRoutesById {
@@ -152,7 +143,6 @@ export interface FileRoutesById {
   '/_protected-by-login/dashboard/_protected-by-bybit/history': typeof ProtectedByLoginDashboardProtectedByBybitHistoryRoute
   '/_protected-by-login/dashboard/_protected-by-bybit/orders': typeof ProtectedByLoginDashboardProtectedByBybitOrdersRoute
   '/_protected-by-login/dashboard/settings/api-keys': typeof ProtectedByLoginDashboardSettingsApiKeysRoute
-  '/_protected-by-login/dashboard/settings/profile': typeof ProtectedByLoginDashboardSettingsProfileRoute
   '/_protected-by-login/dashboard/settings/two-factor': typeof ProtectedByLoginDashboardSettingsTwoFactorRoute
   '/_protected-by-login/dashboard/_protected-by-bybit/': typeof ProtectedByLoginDashboardProtectedByBybitIndexRoute
 }
@@ -169,7 +159,6 @@ export interface FileRouteTypes {
     | '/dashboard/history'
     | '/dashboard/orders'
     | '/dashboard/settings/api-keys'
-    | '/dashboard/settings/profile'
     | '/dashboard/settings/two-factor'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
@@ -184,7 +173,6 @@ export interface FileRouteTypes {
     | '/dashboard/history'
     | '/dashboard/orders'
     | '/dashboard/settings/api-keys'
-    | '/dashboard/settings/profile'
     | '/dashboard/settings/two-factor'
   id:
     | '__root__'
@@ -200,7 +188,6 @@ export interface FileRouteTypes {
     | '/_protected-by-login/dashboard/_protected-by-bybit/history'
     | '/_protected-by-login/dashboard/_protected-by-bybit/orders'
     | '/_protected-by-login/dashboard/settings/api-keys'
-    | '/_protected-by-login/dashboard/settings/profile'
     | '/_protected-by-login/dashboard/settings/two-factor'
     | '/_protected-by-login/dashboard/_protected-by-bybit/'
   fileRoutesById: FileRoutesById
@@ -285,13 +272,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedByLoginDashboardSettingsTwoFactorRouteImport
       parentRoute: typeof ProtectedByLoginDashboardRouteRoute
     }
-    '/_protected-by-login/dashboard/settings/profile': {
-      id: '/_protected-by-login/dashboard/settings/profile'
-      path: '/settings/profile'
-      fullPath: '/dashboard/settings/profile'
-      preLoaderRoute: typeof ProtectedByLoginDashboardSettingsProfileRouteImport
-      parentRoute: typeof ProtectedByLoginDashboardRouteRoute
-    }
     '/_protected-by-login/dashboard/settings/api-keys': {
       id: '/_protected-by-login/dashboard/settings/api-keys'
       path: '/settings/api-keys'
@@ -351,7 +331,6 @@ interface ProtectedByLoginDashboardRouteRouteChildren {
   ProtectedByLoginDashboardProtectedByBybitRouteRoute: typeof ProtectedByLoginDashboardProtectedByBybitRouteRouteWithChildren
   ProtectedByLoginDashboardNoBybitApiKeyRoute: typeof ProtectedByLoginDashboardNoBybitApiKeyRoute
   ProtectedByLoginDashboardSettingsApiKeysRoute: typeof ProtectedByLoginDashboardSettingsApiKeysRoute
-  ProtectedByLoginDashboardSettingsProfileRoute: typeof ProtectedByLoginDashboardSettingsProfileRoute
   ProtectedByLoginDashboardSettingsTwoFactorRoute: typeof ProtectedByLoginDashboardSettingsTwoFactorRoute
 }
 
@@ -363,8 +342,6 @@ const ProtectedByLoginDashboardRouteRouteChildren: ProtectedByLoginDashboardRout
       ProtectedByLoginDashboardNoBybitApiKeyRoute,
     ProtectedByLoginDashboardSettingsApiKeysRoute:
       ProtectedByLoginDashboardSettingsApiKeysRoute,
-    ProtectedByLoginDashboardSettingsProfileRoute:
-      ProtectedByLoginDashboardSettingsProfileRoute,
     ProtectedByLoginDashboardSettingsTwoFactorRoute:
       ProtectedByLoginDashboardSettingsTwoFactorRoute,
   }

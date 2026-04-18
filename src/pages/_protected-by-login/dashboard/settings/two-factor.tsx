@@ -84,6 +84,12 @@ function TwoFactorPage() {
  }
 
  return (
+  // <div>
+  //  <p className="text-sm font-medium text-(--sea-ink)">Two-Factor Authentication</p>
+  //  <p className="text-xs text-(--sea-ink-soft)">
+  //   {is2FAEnabled ? "Your account is secured with 2FA" : "Add extra security to your account"}
+  //  </p>
+  // </div>
   <div className="space-y-6">
    <div>
     <h2 className="text-xl font-bold text-(--sea-ink)">Two-Factor Authentication</h2>
