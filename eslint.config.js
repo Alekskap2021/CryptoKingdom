@@ -19,7 +19,6 @@ import sonarjs from "eslint-plugin-sonarjs";
 import tailwindcss from "eslint-plugin-tailwindcss";
 import yml from "eslint-plugin-yml";
 import tseslint from "typescript-eslint";
-import betterTw from "eslint-plugin-better-tailwindcss";
 
 const sourceFiles = ["src/**/*.{js,jsx,ts,tsx}"];
 const reactFiles = ["src/**/*.{jsx,tsx}"];
@@ -79,7 +78,6 @@ export default defineConfig(
  ...withFiles(reactFiles, jsxA11y.flatConfigs.recommended),
  ...withFiles(reactFiles, eslintReact.configs["recommended-typescript"]),
  ...withFiles(reactFiles, eslintReact.configs["disable-conflict-eslint-plugin-react"]),
- ...withFiles(reactFiles, betterTw.configs.recommended),
  ...withFiles(sourceFiles, tanstackQuery.configs["flat/recommended"]),
  ...withFiles(sourceFiles, tanstackRouter.configs["flat/recommended"]),
  ...withFiles(reactFiles, tailwindcss.configs["flat/recommended"]),
@@ -155,11 +153,6 @@ export default defineConfig(
        group: "internal",
        position: "after",
       },
-      {
-       pattern: `#/${layer}{,/**}`,
-       group: "internal",
-       position: "after",
-      },
      ]),
      pathGroupsExcludedImportTypes: ["builtin"],
      groups: ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
@@ -174,6 +167,13 @@ export default defineConfig(
    "react/prop-types": "off",
    "sonarjs/no-duplicate-string": "off",
    "tailwindcss/no-custom-classname": "off",
+   "sonarjs/no-commented-code": "off",
+  },
+ },
+ {
+  files: ["src/pages/**/index.tsx"],
+  rules: {
+   "@conarti/feature-sliced/public-api": "off",
   },
  },
 );

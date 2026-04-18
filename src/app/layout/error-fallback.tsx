@@ -1,0 +1,22 @@
+import { AlertTriangle } from "lucide-react";
+import { Button } from "@/shared/ui";
+import type { ErrorComponentProps } from "@tanstack/react-router";
+
+export function ErrorFallback({ error, reset }: ErrorComponentProps) {
+ return (
+  <main className="flex min-h-[60vh] flex-col items-center justify-center gap-6 px-4 text-center">
+   <div className="flex size-16 items-center justify-center rounded-full bg-red-100">
+    <AlertTriangle className="size-8 text-red-600" />
+   </div>
+   <div className="space-y-2">
+    <h1 className="text-2xl font-bold text-(--sea-ink)">Something went wrong</h1>
+    <p className="max-w-md text-sm text-(--sea-ink-soft)">
+     {error.message || "An unexpected error occurred. Please try again."}
+    </p>
+   </div>
+   <Button onClick={reset} variant="secondary">
+    Try again
+   </Button>
+  </main>
+ );
+}

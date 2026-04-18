@@ -90,6 +90,7 @@ junit.xml
 .env.test.local
 .env.production.local
 *.env
+!.env.example
 .envrc
 
 # Cloud Platform Files
@@ -241,6 +242,9 @@ tsconfig.tsbuildinfo
 Icon
 Network Trash Folder
 Temporary Items
+
+# Database artifacts
+data/
 
 # Windows
 $RECYCLE.BIN/

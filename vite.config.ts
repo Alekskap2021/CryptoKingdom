@@ -10,7 +10,7 @@ const config = defineConfig({
   tailwindcss(),
   tanstackStart({
    router: {
-    entry: "./router.tsx",
+    entry: "./app/router.tsx",
     generatedRouteTree: "./routeTree.gen.ts",
     routesDirectory: "./pages",
    },

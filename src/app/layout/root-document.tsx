@@ -2,8 +2,6 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 import { HeadContent, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import tanstackQueryDevtools from "../devtools/tanstack-query";
-import { SiteFooter } from "../layout/site-footer";
-import { SiteHeader } from "../layout/site-header";
 import type { ReactNode } from "react";
 
 export const RootDocument = ({ children }: { children: ReactNode }) => {
@@ -12,14 +10,8 @@ export const RootDocument = ({ children }: { children: ReactNode }) => {
    <head>
     <HeadContent />
    </head>
-   <body
-    className="
-      font-sans wrap-anywhere antialiased
-      selection:bg-[rgba(79,184,178,0.24)]
-    ">
-    <SiteHeader />
+   <body className="font-sans wrap-anywhere antialiased selection:bg-[rgba(79,184,178,0.24)]">
     {children}
-    <SiteFooter />
     <TanStackDevtools
      config={{
       position: "bottom-right",

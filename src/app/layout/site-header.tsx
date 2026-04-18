@@ -2,45 +2,20 @@ import { Link } from "@tanstack/react-router";
 
 export const SiteHeader = () => {
  return (
-  <header
-   className="
-     sticky top-0 z-50 border-b border-(--line) bg-(--header-bg) px-4
-     backdrop-blur-lg
-   ">
-   <nav
-    className="
-      flex flex-wrap items-center gap-x-3 gap-y-2 py-3
-      sm:py-4
-    ">
+  <header className="sticky top-0 z-50 border-b border-(--line) bg-(--header-bg) px-4 backdrop-blur-lg">
+   <nav className="flex flex-wrap items-center gap-x-3 gap-y-2 py-3 sm:py-4">
     <h2 className="m-0 shrink-0 text-base font-semibold tracking-tight">
      <Link
-      className="
-        inline-flex items-center gap-2 rounded-full border border-(--chip-line)
-        bg-(--chip-bg) px-3 py-1.5 text-sm text-(--sea-ink) no-underline
-        shadow-[0_8px_24px_rgba(30,90,72,0.08)]
-        sm:px-4 sm:py-2
-      "
+      className="inline-flex items-center gap-2 rounded-full border border-(--chip-line) bg-(--chip-bg) px-3 py-1.5 text-sm text-(--sea-ink) no-underline shadow-[0_8px_24px_rgba(30,90,72,0.08)] sm:px-4 sm:py-2"
       to="/">
-      <span
-       className="
-         size-2 rounded-full bg-[linear-gradient(90deg,#56c6be,#7ed3bf)]
-       "
-      />
+      <span className="size-2 rounded-full bg-[linear-gradient(90deg,#56c6be,#7ed3bf)]" />
       TanStack Start
      </Link>
     </h2>
 
-    <div
-     className="
-       ml-auto flex items-center gap-1.5
-       sm:ml-0 sm:gap-2
-     ">
+    <div className="ml-auto flex items-center gap-1.5 sm:ml-0 sm:gap-2">
      <a
-      className="
-        hidden rounded-xl p-2 text-(--sea-ink-soft) transition
-        hover:bg-(--link-bg-hover) hover:text-(--sea-ink)
-        sm:block
-      "
+      className="hidden rounded-xl p-2 text-(--sea-ink-soft) transition hover:bg-(--link-bg-hover) hover:text-(--sea-ink) sm:block"
       href="https://x.com/tan_stack"
       rel="noreferrer"
       target="_blank">
@@ -53,11 +28,7 @@ export const SiteHeader = () => {
       </svg>
      </a>
      <a
-      className="
-        hidden rounded-xl p-2 text-(--sea-ink-soft) transition
-        hover:bg-(--link-bg-hover) hover:text-(--sea-ink)
-        sm:block
-      "
+      className="hidden rounded-xl p-2 text-(--sea-ink-soft) transition hover:bg-(--link-bg-hover) hover:text-(--sea-ink) sm:block"
       href="https://github.com/TanStack"
       rel="noreferrer"
       target="_blank">
@@ -71,12 +42,7 @@ export const SiteHeader = () => {
      </a>
     </div>
 
-    <div
-     className="
-       order-3 flex w-full flex-wrap items-center gap-x-4 gap-y-1 pb-1 text-sm
-       font-semibold
-       sm:order-2 sm:w-auto sm:flex-nowrap sm:pb-0
-     ">
+    <div className="order-3 flex w-full flex-wrap items-center gap-x-4 gap-y-1 pb-1 text-sm font-semibold sm:order-2 sm:w-auto sm:flex-nowrap sm:pb-0">
      <Link activeProps={{ className: "nav-link is-active" }} to="/">
       Home
      </Link>

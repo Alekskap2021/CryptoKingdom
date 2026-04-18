@@ -11,5 +11,5 @@ export default {
  tabWidth: 1,
  trailingComma: "all",
  useTabs: false,
- // plugins: ["prettier-plugin-tailwindcss"],
+ plugins: ["prettier-plugin-tailwindcss"],
 };
