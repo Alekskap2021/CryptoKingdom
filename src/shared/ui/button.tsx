@@ -2,6 +2,7 @@ import { type ButtonHTMLAttributes, type RefObject } from "react";
 import { cn } from "../lib/cn";
 
 const variants = {
+ clean: "",
  danger: "bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500",
  ghost: "text-(--sea-ink-soft) hover:bg-(--surface) hover:text-(--sea-ink)",
  outline: "border border-(--line) bg-transparent text-(--sea-ink) hover:bg-(--surface)",

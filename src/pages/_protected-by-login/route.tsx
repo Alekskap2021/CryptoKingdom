@@ -5,7 +5,7 @@ import { Navbar } from "@/widgets/Navbar";
 
 function MainLayout() {
  return (
-  <div className="flex min-h-screen">
+  <div className="relative flex min-h-screen">
    <Navbar />
 
    <div className="flex flex-1 flex-col">
