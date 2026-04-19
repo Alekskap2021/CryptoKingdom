@@ -101,6 +101,6 @@ function ChartPage() {
  );
 }
 
-export const Route = createFileRoute("/_protected-by-login/dashboard/_protected-by-bybit/chart")({
+export const Route = createFileRoute("/_protected-by-login/_protected-by-bybit/chart")({
  component: ChartPage,
 });

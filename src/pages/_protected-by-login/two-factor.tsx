@@ -190,6 +190,6 @@ function TwoFactorPage() {
  );
 }
 
-export const Route = createFileRoute("/_protected-by-login/dashboard/settings/two-factor")({
+export const Route = createFileRoute("/_protected-by-login/two-factor")({
  component: TwoFactorPage,
 });

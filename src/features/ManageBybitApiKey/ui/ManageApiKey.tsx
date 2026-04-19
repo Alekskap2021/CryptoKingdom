@@ -8,7 +8,7 @@ import { ApiKeyList } from "./ApiKeyList";
 
 export const ManageApiKey = () => {
  const { apiKeysList } = useRouteContext({
-  from: "/_protected-by-login/dashboard/settings/api-keys",
+  from: "/_protected-by-login",
  });
 
  const [showForm, setShowForm] = useState(false);

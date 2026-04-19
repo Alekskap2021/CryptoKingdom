@@ -15,7 +15,7 @@ export function NotFoundFallback() {
    </div>
    <Link
     className="inline-flex h-9 items-center justify-center rounded-lg border border-(--line) bg-(--surface) px-4 text-sm font-semibold text-(--sea-ink) no-underline transition hover:bg-(--surface-strong)"
-    to="/dashboard">
+    to="/">
     Go to Dashboard
    </Link>
   </main>

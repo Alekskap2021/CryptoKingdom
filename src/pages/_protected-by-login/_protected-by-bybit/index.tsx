@@ -259,7 +259,7 @@ function OrdersTable({ loading, orders }: { loading: boolean; orders: Order[] | 
     <CardTitle>Open Orders</CardTitle>
     <Link
      className="text-xs font-medium text-(--lagoon-deep) no-underline hover:underline"
-     to="/dashboard/orders">
+     to="/orders">
      View all
     </Link>
    </CardHeader>
@@ -275,6 +275,6 @@ function formatUsd(value: string | undefined): string {
  return `$${num.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 })}`;
 }
 
-export const Route = createFileRoute("/_protected-by-login/dashboard/_protected-by-bybit/")({
+export const Route = createFileRoute("/_protected-by-login/_protected-by-bybit/")({
  component: DashboardOverviewPage,
 });

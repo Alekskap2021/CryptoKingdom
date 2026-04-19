@@ -27,28 +27,28 @@ export const navbarConfig: Array<NavGroup> = [
     icon: LayoutDashboard,
     label: "Overview",
     linkOptions: {
-     to: "/dashboard",
+     to: "/",
     },
    },
    {
     icon: ShoppingCart,
     label: "Orders",
     linkOptions: {
-     to: "/dashboard/orders",
+     to: "/orders",
     },
    },
    {
     icon: CandlestickChart,
     label: "Chart",
     linkOptions: {
-     to: "/dashboard/chart",
+     to: "/chart",
     },
    },
    {
     icon: History,
     label: "History",
     linkOptions: {
-     to: "/dashboard/history",
+     to: "/history",
     },
    },
   ],
@@ -59,12 +59,12 @@ export const navbarConfig: Array<NavGroup> = [
    {
     icon: KeyRound,
     label: "API Keys",
-    linkOptions: { to: "/dashboard/settings/api-keys" },
+    linkOptions: { to: "/api-keys" },
    },
    {
     icon: BarChart3,
     label: "Two-Factor",
-    linkOptions: { to: "/dashboard/settings/two-factor" },
+    linkOptions: { to: "/two-factor" },
    },
   ],
   groupLabel: "Settings",

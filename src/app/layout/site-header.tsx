@@ -46,7 +46,7 @@ export const SiteHeader = () => {
      <Link activeProps={{ className: "nav-link is-active" }} to="/">
       Home
      </Link>
-     <Link activeProps={{ className: "nav-link is-active" }} to="/about">
+     <Link activeProps={{ className: "nav-link is-active" }} to="/">
       About
      </Link>
      <a

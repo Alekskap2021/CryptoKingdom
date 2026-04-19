@@ -1,7 +1,13 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { KeyRound } from "lucide-react";
 
-export const Route = createFileRoute("/_protected-by-login/dashboard/no-bybit-api-key")({
+export const Route = createFileRoute("/_protected-by-login/no-bybit-api-key")({
+ beforeLoad: async ({ context }) => {
+  const { apiKeysList } = context;
+  if (apiKeysList.length > 0) {
+   throw redirect({ to: "/" });
+  }
+ },
  component: RouteComponent,
 });
 
@@ -19,7 +25,7 @@ function RouteComponent() {
    </p>
    <Link
     className="inline-flex h-9 items-center rounded-lg bg-(--lagoon-deep) px-4 text-sm font-semibold text-white no-underline transition hover:bg-(--lagoon)"
-    to="/dashboard/settings/api-keys">
+    to="/api-keys">
     Add API Key
    </Link>
   </div>

@@ -47,7 +47,7 @@ function RegisterPage() {
    return;
   }
 
-  await navigate({ to: "/dashboard" });
+  await navigate({ to: "/" });
  }
 
  return (

@@ -271,6 +271,6 @@ function formatUsd(value: string | undefined): string {
  return `$${num.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 })}`;
 }
 
-export const Route = createFileRoute("/_protected-by-login/dashboard/_protected-by-bybit/orders")({
+export const Route = createFileRoute("/_protected-by-login/_protected-by-bybit/orders")({
  component: OrdersPage,
 });

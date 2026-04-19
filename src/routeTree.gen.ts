@@ -10,27 +10,20 @@
 
 import { Route as rootRouteImport } from './pages/__root'
 import { Route as ProtectedByLoginRouteRouteImport } from './pages/_protected-by-login/route'
-import { Route as IndexRouteImport } from './pages/index'
 import { Route as AuthRegisterRouteImport } from './pages/auth/register'
 import { Route as AuthLoginRouteImport } from './pages/auth/login'
-import { Route as ProtectedByLoginDashboardRouteRouteImport } from './pages/_protected-by-login/dashboard/route'
+import { Route as ProtectedByLoginTwoFactorRouteImport } from './pages/_protected-by-login/two-factor'
+import { Route as ProtectedByLoginNoBybitApiKeyRouteImport } from './pages/_protected-by-login/no-bybit-api-key'
+import { Route as ProtectedByLoginApiKeysRouteImport } from './pages/_protected-by-login/api-keys'
+import { Route as ProtectedByLoginProtectedByBybitRouteRouteImport } from './pages/_protected-by-login/_protected-by-bybit/route'
+import { Route as ProtectedByLoginProtectedByBybitIndexRouteImport } from './pages/_protected-by-login/_protected-by-bybit/index'
 import { Route as ApiAuthSplatRouteImport } from './pages/api/auth/$'
-import { Route as ProtectedByLoginDashboardNoBybitApiKeyRouteImport } from './pages/_protected-by-login/dashboard/no-bybit-api-key'
-import { Route as ProtectedByLoginDashboardProtectedByBybitRouteRouteImport } from './pages/_protected-by-login/dashboard/_protected-by-bybit/route'
-import { Route as ProtectedByLoginDashboardProtectedByBybitIndexRouteImport } from './pages/_protected-by-login/dashboard/_protected-by-bybit/index'
-import { Route as ProtectedByLoginDashboardSettingsTwoFactorRouteImport } from './pages/_protected-by-login/dashboard/settings/two-factor'
-import { Route as ProtectedByLoginDashboardSettingsApiKeysRouteImport } from './pages/_protected-by-login/dashboard/settings/api-keys'
-import { Route as ProtectedByLoginDashboardProtectedByBybitOrdersRouteImport } from './pages/_protected-by-login/dashboard/_protected-by-bybit/orders'
-import { Route as ProtectedByLoginDashboardProtectedByBybitHistoryRouteImport } from './pages/_protected-by-login/dashboard/_protected-by-bybit/history'
-import { Route as ProtectedByLoginDashboardProtectedByBybitChartRouteImport } from './pages/_protected-by-login/dashboard/_protected-by-bybit/chart'
+import { Route as ProtectedByLoginProtectedByBybitOrdersRouteImport } from './pages/_protected-by-login/_protected-by-bybit/orders'
+import { Route as ProtectedByLoginProtectedByBybitHistoryRouteImport } from './pages/_protected-by-login/_protected-by-bybit/history'
+import { Route as ProtectedByLoginProtectedByBybitChartRouteImport } from './pages/_protected-by-login/_protected-by-bybit/chart'
 
 const ProtectedByLoginRouteRoute = ProtectedByLoginRouteRouteImport.update({
   id: '/_protected-by-login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRegisterRoute = AuthRegisterRouteImport.update({
@@ -43,157 +36,139 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
   path: '/auth/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProtectedByLoginDashboardRouteRoute =
-  ProtectedByLoginDashboardRouteRouteImport.update({
-    id: '/dashboard',
-    path: '/dashboard',
+const ProtectedByLoginTwoFactorRoute =
+  ProtectedByLoginTwoFactorRouteImport.update({
+    id: '/two-factor',
+    path: '/two-factor',
     getParentRoute: () => ProtectedByLoginRouteRoute,
+  } as any)
+const ProtectedByLoginNoBybitApiKeyRoute =
+  ProtectedByLoginNoBybitApiKeyRouteImport.update({
+    id: '/no-bybit-api-key',
+    path: '/no-bybit-api-key',
+    getParentRoute: () => ProtectedByLoginRouteRoute,
+  } as any)
+const ProtectedByLoginApiKeysRoute = ProtectedByLoginApiKeysRouteImport.update({
+  id: '/api-keys',
+  path: '/api-keys',
+  getParentRoute: () => ProtectedByLoginRouteRoute,
+} as any)
+const ProtectedByLoginProtectedByBybitRouteRoute =
+  ProtectedByLoginProtectedByBybitRouteRouteImport.update({
+    id: '/_protected-by-bybit',
+    getParentRoute: () => ProtectedByLoginRouteRoute,
+  } as any)
+const ProtectedByLoginProtectedByBybitIndexRoute =
+  ProtectedByLoginProtectedByBybitIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => ProtectedByLoginProtectedByBybitRouteRoute,
   } as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProtectedByLoginDashboardNoBybitApiKeyRoute =
-  ProtectedByLoginDashboardNoBybitApiKeyRouteImport.update({
-    id: '/no-bybit-api-key',
-    path: '/no-bybit-api-key',
-    getParentRoute: () => ProtectedByLoginDashboardRouteRoute,
-  } as any)
-const ProtectedByLoginDashboardProtectedByBybitRouteRoute =
-  ProtectedByLoginDashboardProtectedByBybitRouteRouteImport.update({
-    id: '/_protected-by-bybit',
-    getParentRoute: () => ProtectedByLoginDashboardRouteRoute,
-  } as any)
-const ProtectedByLoginDashboardProtectedByBybitIndexRoute =
-  ProtectedByLoginDashboardProtectedByBybitIndexRouteImport.update({
-    id: '/',
-    path: '/',
-    getParentRoute: () => ProtectedByLoginDashboardProtectedByBybitRouteRoute,
-  } as any)
-const ProtectedByLoginDashboardSettingsTwoFactorRoute =
-  ProtectedByLoginDashboardSettingsTwoFactorRouteImport.update({
-    id: '/settings/two-factor',
-    path: '/settings/two-factor',
-    getParentRoute: () => ProtectedByLoginDashboardRouteRoute,
-  } as any)
-const ProtectedByLoginDashboardSettingsApiKeysRoute =
-  ProtectedByLoginDashboardSettingsApiKeysRouteImport.update({
-    id: '/settings/api-keys',
-    path: '/settings/api-keys',
-    getParentRoute: () => ProtectedByLoginDashboardRouteRoute,
-  } as any)
-const ProtectedByLoginDashboardProtectedByBybitOrdersRoute =
-  ProtectedByLoginDashboardProtectedByBybitOrdersRouteImport.update({
+const ProtectedByLoginProtectedByBybitOrdersRoute =
+  ProtectedByLoginProtectedByBybitOrdersRouteImport.update({
     id: '/orders',
     path: '/orders',
-    getParentRoute: () => ProtectedByLoginDashboardProtectedByBybitRouteRoute,
+    getParentRoute: () => ProtectedByLoginProtectedByBybitRouteRoute,
   } as any)
-const ProtectedByLoginDashboardProtectedByBybitHistoryRoute =
-  ProtectedByLoginDashboardProtectedByBybitHistoryRouteImport.update({
+const ProtectedByLoginProtectedByBybitHistoryRoute =
+  ProtectedByLoginProtectedByBybitHistoryRouteImport.update({
     id: '/history',
     path: '/history',
-    getParentRoute: () => ProtectedByLoginDashboardProtectedByBybitRouteRoute,
+    getParentRoute: () => ProtectedByLoginProtectedByBybitRouteRoute,
   } as any)
-const ProtectedByLoginDashboardProtectedByBybitChartRoute =
-  ProtectedByLoginDashboardProtectedByBybitChartRouteImport.update({
+const ProtectedByLoginProtectedByBybitChartRoute =
+  ProtectedByLoginProtectedByBybitChartRouteImport.update({
     id: '/chart',
     path: '/chart',
-    getParentRoute: () => ProtectedByLoginDashboardProtectedByBybitRouteRoute,
+    getParentRoute: () => ProtectedByLoginProtectedByBybitRouteRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/dashboard': typeof ProtectedByLoginDashboardProtectedByBybitRouteRouteWithChildren
+  '/': typeof ProtectedByLoginProtectedByBybitIndexRoute
+  '/api-keys': typeof ProtectedByLoginApiKeysRoute
+  '/no-bybit-api-key': typeof ProtectedByLoginNoBybitApiKeyRoute
+  '/two-factor': typeof ProtectedByLoginTwoFactorRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
-  '/dashboard/no-bybit-api-key': typeof ProtectedByLoginDashboardNoBybitApiKeyRoute
+  '/chart': typeof ProtectedByLoginProtectedByBybitChartRoute
+  '/history': typeof ProtectedByLoginProtectedByBybitHistoryRoute
+  '/orders': typeof ProtectedByLoginProtectedByBybitOrdersRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/dashboard/chart': typeof ProtectedByLoginDashboardProtectedByBybitChartRoute
-  '/dashboard/history': typeof ProtectedByLoginDashboardProtectedByBybitHistoryRoute
-  '/dashboard/orders': typeof ProtectedByLoginDashboardProtectedByBybitOrdersRoute
-  '/dashboard/settings/api-keys': typeof ProtectedByLoginDashboardSettingsApiKeysRoute
-  '/dashboard/settings/two-factor': typeof ProtectedByLoginDashboardSettingsTwoFactorRoute
-  '/dashboard/': typeof ProtectedByLoginDashboardProtectedByBybitIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/dashboard': typeof ProtectedByLoginDashboardProtectedByBybitIndexRoute
+  '/': typeof ProtectedByLoginProtectedByBybitIndexRoute
+  '/api-keys': typeof ProtectedByLoginApiKeysRoute
+  '/no-bybit-api-key': typeof ProtectedByLoginNoBybitApiKeyRoute
+  '/two-factor': typeof ProtectedByLoginTwoFactorRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
-  '/dashboard/no-bybit-api-key': typeof ProtectedByLoginDashboardNoBybitApiKeyRoute
+  '/chart': typeof ProtectedByLoginProtectedByBybitChartRoute
+  '/history': typeof ProtectedByLoginProtectedByBybitHistoryRoute
+  '/orders': typeof ProtectedByLoginProtectedByBybitOrdersRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/dashboard/chart': typeof ProtectedByLoginDashboardProtectedByBybitChartRoute
-  '/dashboard/history': typeof ProtectedByLoginDashboardProtectedByBybitHistoryRoute
-  '/dashboard/orders': typeof ProtectedByLoginDashboardProtectedByBybitOrdersRoute
-  '/dashboard/settings/api-keys': typeof ProtectedByLoginDashboardSettingsApiKeysRoute
-  '/dashboard/settings/two-factor': typeof ProtectedByLoginDashboardSettingsTwoFactorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
   '/_protected-by-login': typeof ProtectedByLoginRouteRouteWithChildren
-  '/_protected-by-login/dashboard': typeof ProtectedByLoginDashboardRouteRouteWithChildren
+  '/_protected-by-login/_protected-by-bybit': typeof ProtectedByLoginProtectedByBybitRouteRouteWithChildren
+  '/_protected-by-login/api-keys': typeof ProtectedByLoginApiKeysRoute
+  '/_protected-by-login/no-bybit-api-key': typeof ProtectedByLoginNoBybitApiKeyRoute
+  '/_protected-by-login/two-factor': typeof ProtectedByLoginTwoFactorRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
-  '/_protected-by-login/dashboard/_protected-by-bybit': typeof ProtectedByLoginDashboardProtectedByBybitRouteRouteWithChildren
-  '/_protected-by-login/dashboard/no-bybit-api-key': typeof ProtectedByLoginDashboardNoBybitApiKeyRoute
+  '/_protected-by-login/_protected-by-bybit/chart': typeof ProtectedByLoginProtectedByBybitChartRoute
+  '/_protected-by-login/_protected-by-bybit/history': typeof ProtectedByLoginProtectedByBybitHistoryRoute
+  '/_protected-by-login/_protected-by-bybit/orders': typeof ProtectedByLoginProtectedByBybitOrdersRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/_protected-by-login/dashboard/_protected-by-bybit/chart': typeof ProtectedByLoginDashboardProtectedByBybitChartRoute
-  '/_protected-by-login/dashboard/_protected-by-bybit/history': typeof ProtectedByLoginDashboardProtectedByBybitHistoryRoute
-  '/_protected-by-login/dashboard/_protected-by-bybit/orders': typeof ProtectedByLoginDashboardProtectedByBybitOrdersRoute
-  '/_protected-by-login/dashboard/settings/api-keys': typeof ProtectedByLoginDashboardSettingsApiKeysRoute
-  '/_protected-by-login/dashboard/settings/two-factor': typeof ProtectedByLoginDashboardSettingsTwoFactorRoute
-  '/_protected-by-login/dashboard/_protected-by-bybit/': typeof ProtectedByLoginDashboardProtectedByBybitIndexRoute
+  '/_protected-by-login/_protected-by-bybit/': typeof ProtectedByLoginProtectedByBybitIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/dashboard'
+    | '/api-keys'
+    | '/no-bybit-api-key'
+    | '/two-factor'
     | '/auth/login'
     | '/auth/register'
-    | '/dashboard/no-bybit-api-key'
+    | '/chart'
+    | '/history'
+    | '/orders'
     | '/api/auth/$'
-    | '/dashboard/chart'
-    | '/dashboard/history'
-    | '/dashboard/orders'
-    | '/dashboard/settings/api-keys'
-    | '/dashboard/settings/two-factor'
-    | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/dashboard'
+    | '/api-keys'
+    | '/no-bybit-api-key'
+    | '/two-factor'
     | '/auth/login'
     | '/auth/register'
-    | '/dashboard/no-bybit-api-key'
+    | '/chart'
+    | '/history'
+    | '/orders'
     | '/api/auth/$'
-    | '/dashboard/chart'
-    | '/dashboard/history'
-    | '/dashboard/orders'
-    | '/dashboard/settings/api-keys'
-    | '/dashboard/settings/two-factor'
   id:
     | '__root__'
-    | '/'
     | '/_protected-by-login'
-    | '/_protected-by-login/dashboard'
+    | '/_protected-by-login/_protected-by-bybit'
+    | '/_protected-by-login/api-keys'
+    | '/_protected-by-login/no-bybit-api-key'
+    | '/_protected-by-login/two-factor'
     | '/auth/login'
     | '/auth/register'
-    | '/_protected-by-login/dashboard/_protected-by-bybit'
-    | '/_protected-by-login/dashboard/no-bybit-api-key'
+    | '/_protected-by-login/_protected-by-bybit/chart'
+    | '/_protected-by-login/_protected-by-bybit/history'
+    | '/_protected-by-login/_protected-by-bybit/orders'
     | '/api/auth/$'
-    | '/_protected-by-login/dashboard/_protected-by-bybit/chart'
-    | '/_protected-by-login/dashboard/_protected-by-bybit/history'
-    | '/_protected-by-login/dashboard/_protected-by-bybit/orders'
-    | '/_protected-by-login/dashboard/settings/api-keys'
-    | '/_protected-by-login/dashboard/settings/two-factor'
-    | '/_protected-by-login/dashboard/_protected-by-bybit/'
+    | '/_protected-by-login/_protected-by-bybit/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
   ProtectedByLoginRouteRoute: typeof ProtectedByLoginRouteRouteWithChildren
   AuthLoginRoute: typeof AuthLoginRoute
   AuthRegisterRoute: typeof AuthRegisterRoute
@@ -207,13 +182,6 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof ProtectedByLoginRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth/register': {
@@ -230,12 +198,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_protected-by-login/dashboard': {
-      id: '/_protected-by-login/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof ProtectedByLoginDashboardRouteRouteImport
+    '/_protected-by-login/two-factor': {
+      id: '/_protected-by-login/two-factor'
+      path: '/two-factor'
+      fullPath: '/two-factor'
+      preLoaderRoute: typeof ProtectedByLoginTwoFactorRouteImport
       parentRoute: typeof ProtectedByLoginRouteRoute
+    }
+    '/_protected-by-login/no-bybit-api-key': {
+      id: '/_protected-by-login/no-bybit-api-key'
+      path: '/no-bybit-api-key'
+      fullPath: '/no-bybit-api-key'
+      preLoaderRoute: typeof ProtectedByLoginNoBybitApiKeyRouteImport
+      parentRoute: typeof ProtectedByLoginRouteRoute
+    }
+    '/_protected-by-login/api-keys': {
+      id: '/_protected-by-login/api-keys'
+      path: '/api-keys'
+      fullPath: '/api-keys'
+      preLoaderRoute: typeof ProtectedByLoginApiKeysRouteImport
+      parentRoute: typeof ProtectedByLoginRouteRoute
+    }
+    '/_protected-by-login/_protected-by-bybit': {
+      id: '/_protected-by-login/_protected-by-bybit'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof ProtectedByLoginProtectedByBybitRouteRouteImport
+      parentRoute: typeof ProtectedByLoginRouteRoute
+    }
+    '/_protected-by-login/_protected-by-bybit/': {
+      id: '/_protected-by-login/_protected-by-bybit/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof ProtectedByLoginProtectedByBybitIndexRouteImport
+      parentRoute: typeof ProtectedByLoginProtectedByBybitRouteRoute
     }
     '/api/auth/$': {
       id: '/api/auth/$'
@@ -244,120 +240,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_protected-by-login/dashboard/no-bybit-api-key': {
-      id: '/_protected-by-login/dashboard/no-bybit-api-key'
-      path: '/no-bybit-api-key'
-      fullPath: '/dashboard/no-bybit-api-key'
-      preLoaderRoute: typeof ProtectedByLoginDashboardNoBybitApiKeyRouteImport
-      parentRoute: typeof ProtectedByLoginDashboardRouteRoute
-    }
-    '/_protected-by-login/dashboard/_protected-by-bybit': {
-      id: '/_protected-by-login/dashboard/_protected-by-bybit'
-      path: ''
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof ProtectedByLoginDashboardProtectedByBybitRouteRouteImport
-      parentRoute: typeof ProtectedByLoginDashboardRouteRoute
-    }
-    '/_protected-by-login/dashboard/_protected-by-bybit/': {
-      id: '/_protected-by-login/dashboard/_protected-by-bybit/'
-      path: '/'
-      fullPath: '/dashboard/'
-      preLoaderRoute: typeof ProtectedByLoginDashboardProtectedByBybitIndexRouteImport
-      parentRoute: typeof ProtectedByLoginDashboardProtectedByBybitRouteRoute
-    }
-    '/_protected-by-login/dashboard/settings/two-factor': {
-      id: '/_protected-by-login/dashboard/settings/two-factor'
-      path: '/settings/two-factor'
-      fullPath: '/dashboard/settings/two-factor'
-      preLoaderRoute: typeof ProtectedByLoginDashboardSettingsTwoFactorRouteImport
-      parentRoute: typeof ProtectedByLoginDashboardRouteRoute
-    }
-    '/_protected-by-login/dashboard/settings/api-keys': {
-      id: '/_protected-by-login/dashboard/settings/api-keys'
-      path: '/settings/api-keys'
-      fullPath: '/dashboard/settings/api-keys'
-      preLoaderRoute: typeof ProtectedByLoginDashboardSettingsApiKeysRouteImport
-      parentRoute: typeof ProtectedByLoginDashboardRouteRoute
-    }
-    '/_protected-by-login/dashboard/_protected-by-bybit/orders': {
-      id: '/_protected-by-login/dashboard/_protected-by-bybit/orders'
+    '/_protected-by-login/_protected-by-bybit/orders': {
+      id: '/_protected-by-login/_protected-by-bybit/orders'
       path: '/orders'
-      fullPath: '/dashboard/orders'
-      preLoaderRoute: typeof ProtectedByLoginDashboardProtectedByBybitOrdersRouteImport
-      parentRoute: typeof ProtectedByLoginDashboardProtectedByBybitRouteRoute
+      fullPath: '/orders'
+      preLoaderRoute: typeof ProtectedByLoginProtectedByBybitOrdersRouteImport
+      parentRoute: typeof ProtectedByLoginProtectedByBybitRouteRoute
     }
-    '/_protected-by-login/dashboard/_protected-by-bybit/history': {
-      id: '/_protected-by-login/dashboard/_protected-by-bybit/history'
+    '/_protected-by-login/_protected-by-bybit/history': {
+      id: '/_protected-by-login/_protected-by-bybit/history'
       path: '/history'
-      fullPath: '/dashboard/history'
-      preLoaderRoute: typeof ProtectedByLoginDashboardProtectedByBybitHistoryRouteImport
-      parentRoute: typeof ProtectedByLoginDashboardProtectedByBybitRouteRoute
+      fullPath: '/history'
+      preLoaderRoute: typeof ProtectedByLoginProtectedByBybitHistoryRouteImport
+      parentRoute: typeof ProtectedByLoginProtectedByBybitRouteRoute
     }
-    '/_protected-by-login/dashboard/_protected-by-bybit/chart': {
-      id: '/_protected-by-login/dashboard/_protected-by-bybit/chart'
+    '/_protected-by-login/_protected-by-bybit/chart': {
+      id: '/_protected-by-login/_protected-by-bybit/chart'
       path: '/chart'
-      fullPath: '/dashboard/chart'
-      preLoaderRoute: typeof ProtectedByLoginDashboardProtectedByBybitChartRouteImport
-      parentRoute: typeof ProtectedByLoginDashboardProtectedByBybitRouteRoute
+      fullPath: '/chart'
+      preLoaderRoute: typeof ProtectedByLoginProtectedByBybitChartRouteImport
+      parentRoute: typeof ProtectedByLoginProtectedByBybitRouteRoute
     }
   }
 }
 
-interface ProtectedByLoginDashboardProtectedByBybitRouteRouteChildren {
-  ProtectedByLoginDashboardProtectedByBybitChartRoute: typeof ProtectedByLoginDashboardProtectedByBybitChartRoute
-  ProtectedByLoginDashboardProtectedByBybitHistoryRoute: typeof ProtectedByLoginDashboardProtectedByBybitHistoryRoute
-  ProtectedByLoginDashboardProtectedByBybitOrdersRoute: typeof ProtectedByLoginDashboardProtectedByBybitOrdersRoute
-  ProtectedByLoginDashboardProtectedByBybitIndexRoute: typeof ProtectedByLoginDashboardProtectedByBybitIndexRoute
+interface ProtectedByLoginProtectedByBybitRouteRouteChildren {
+  ProtectedByLoginProtectedByBybitChartRoute: typeof ProtectedByLoginProtectedByBybitChartRoute
+  ProtectedByLoginProtectedByBybitHistoryRoute: typeof ProtectedByLoginProtectedByBybitHistoryRoute
+  ProtectedByLoginProtectedByBybitOrdersRoute: typeof ProtectedByLoginProtectedByBybitOrdersRoute
+  ProtectedByLoginProtectedByBybitIndexRoute: typeof ProtectedByLoginProtectedByBybitIndexRoute
 }
 
-const ProtectedByLoginDashboardProtectedByBybitRouteRouteChildren: ProtectedByLoginDashboardProtectedByBybitRouteRouteChildren =
+const ProtectedByLoginProtectedByBybitRouteRouteChildren: ProtectedByLoginProtectedByBybitRouteRouteChildren =
   {
-    ProtectedByLoginDashboardProtectedByBybitChartRoute:
-      ProtectedByLoginDashboardProtectedByBybitChartRoute,
-    ProtectedByLoginDashboardProtectedByBybitHistoryRoute:
-      ProtectedByLoginDashboardProtectedByBybitHistoryRoute,
-    ProtectedByLoginDashboardProtectedByBybitOrdersRoute:
-      ProtectedByLoginDashboardProtectedByBybitOrdersRoute,
-    ProtectedByLoginDashboardProtectedByBybitIndexRoute:
-      ProtectedByLoginDashboardProtectedByBybitIndexRoute,
+    ProtectedByLoginProtectedByBybitChartRoute:
+      ProtectedByLoginProtectedByBybitChartRoute,
+    ProtectedByLoginProtectedByBybitHistoryRoute:
+      ProtectedByLoginProtectedByBybitHistoryRoute,
+    ProtectedByLoginProtectedByBybitOrdersRoute:
+      ProtectedByLoginProtectedByBybitOrdersRoute,
+    ProtectedByLoginProtectedByBybitIndexRoute:
+      ProtectedByLoginProtectedByBybitIndexRoute,
   }
 
-const ProtectedByLoginDashboardProtectedByBybitRouteRouteWithChildren =
-  ProtectedByLoginDashboardProtectedByBybitRouteRoute._addFileChildren(
-    ProtectedByLoginDashboardProtectedByBybitRouteRouteChildren,
-  )
-
-interface ProtectedByLoginDashboardRouteRouteChildren {
-  ProtectedByLoginDashboardProtectedByBybitRouteRoute: typeof ProtectedByLoginDashboardProtectedByBybitRouteRouteWithChildren
-  ProtectedByLoginDashboardNoBybitApiKeyRoute: typeof ProtectedByLoginDashboardNoBybitApiKeyRoute
-  ProtectedByLoginDashboardSettingsApiKeysRoute: typeof ProtectedByLoginDashboardSettingsApiKeysRoute
-  ProtectedByLoginDashboardSettingsTwoFactorRoute: typeof ProtectedByLoginDashboardSettingsTwoFactorRoute
-}
-
-const ProtectedByLoginDashboardRouteRouteChildren: ProtectedByLoginDashboardRouteRouteChildren =
-  {
-    ProtectedByLoginDashboardProtectedByBybitRouteRoute:
-      ProtectedByLoginDashboardProtectedByBybitRouteRouteWithChildren,
-    ProtectedByLoginDashboardNoBybitApiKeyRoute:
-      ProtectedByLoginDashboardNoBybitApiKeyRoute,
-    ProtectedByLoginDashboardSettingsApiKeysRoute:
-      ProtectedByLoginDashboardSettingsApiKeysRoute,
-    ProtectedByLoginDashboardSettingsTwoFactorRoute:
-      ProtectedByLoginDashboardSettingsTwoFactorRoute,
-  }
-
-const ProtectedByLoginDashboardRouteRouteWithChildren =
-  ProtectedByLoginDashboardRouteRoute._addFileChildren(
-    ProtectedByLoginDashboardRouteRouteChildren,
+const ProtectedByLoginProtectedByBybitRouteRouteWithChildren =
+  ProtectedByLoginProtectedByBybitRouteRoute._addFileChildren(
+    ProtectedByLoginProtectedByBybitRouteRouteChildren,
   )
 
 interface ProtectedByLoginRouteRouteChildren {
-  ProtectedByLoginDashboardRouteRoute: typeof ProtectedByLoginDashboardRouteRouteWithChildren
+  ProtectedByLoginProtectedByBybitRouteRoute: typeof ProtectedByLoginProtectedByBybitRouteRouteWithChildren
+  ProtectedByLoginApiKeysRoute: typeof ProtectedByLoginApiKeysRoute
+  ProtectedByLoginNoBybitApiKeyRoute: typeof ProtectedByLoginNoBybitApiKeyRoute
+  ProtectedByLoginTwoFactorRoute: typeof ProtectedByLoginTwoFactorRoute
 }
 
 const ProtectedByLoginRouteRouteChildren: ProtectedByLoginRouteRouteChildren = {
-  ProtectedByLoginDashboardRouteRoute:
-    ProtectedByLoginDashboardRouteRouteWithChildren,
+  ProtectedByLoginProtectedByBybitRouteRoute:
+    ProtectedByLoginProtectedByBybitRouteRouteWithChildren,
+  ProtectedByLoginApiKeysRoute: ProtectedByLoginApiKeysRoute,
+  ProtectedByLoginNoBybitApiKeyRoute: ProtectedByLoginNoBybitApiKeyRoute,
+  ProtectedByLoginTwoFactorRoute: ProtectedByLoginTwoFactorRoute,
 }
 
 const ProtectedByLoginRouteRouteWithChildren =
@@ -366,7 +309,6 @@ const ProtectedByLoginRouteRouteWithChildren =
   )
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   ProtectedByLoginRouteRoute: ProtectedByLoginRouteRouteWithChildren,
   AuthLoginRoute: AuthLoginRoute,
   AuthRegisterRoute: AuthRegisterRoute,
