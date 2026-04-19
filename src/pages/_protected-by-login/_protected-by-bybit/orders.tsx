@@ -172,11 +172,11 @@ function OrdersPage() {
  return (
   <div className="space-y-6">
    <div className="flex items-center justify-between">
-    <h2 className="text-xl font-bold text-(--sea-ink)">Orders</h2>
+    <h2 className="text-xl font-bold text-slate-100">Orders</h2>
     <div className="flex items-center gap-3">
      {keys.length > 1 && (
       <select
-       className="rounded-lg border border-(--line) bg-(--surface-strong) px-3 py-1.5 text-sm"
+       className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm"
        onChange={(e) => setActiveKey(keys.find((k) => k.id === e.target.value) || null)}
        value={activeKey?.id}>
        {keys.map((k) => (
@@ -201,7 +201,7 @@ function OrdersPage() {
       <div className="space-y-1.5">
        <Label htmlFor="symbol">Symbol</Label>
        <select
-        className="flex h-9 w-full rounded-lg border border-(--line) bg-(--surface-strong) px-3 text-sm"
+        className="flex h-9 w-full rounded-lg border border-slate-700 bg-slate-900 px-3 text-sm"
         id="symbol"
         name="symbol"
         required>
@@ -215,7 +215,7 @@ function OrdersPage() {
       <div className="space-y-1.5">
        <Label htmlFor="side">Side</Label>
        <select
-        className="flex h-9 w-full rounded-lg border border-(--line) bg-(--surface-strong) px-3 text-sm"
+        className="flex h-9 w-full rounded-lg border border-slate-700 bg-slate-900 px-3 text-sm"
         id="side"
         name="side">
         <option value="Buy">Buy</option>
@@ -225,7 +225,7 @@ function OrdersPage() {
       <div className="space-y-1.5">
        <Label htmlFor="orderType">Type</Label>
        <select
-        className="flex h-9 w-full rounded-lg border border-(--line) bg-(--surface-strong) px-3 text-sm"
+        className="flex h-9 w-full rounded-lg border border-slate-700 bg-slate-900 px-3 text-sm"
         id="orderType"
         name="orderType">
         <option value="Limit">Limit</option>

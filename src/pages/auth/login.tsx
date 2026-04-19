@@ -147,9 +147,9 @@ function LoginPage() {
       {loading ? "Signing in..." : "Sign In"}
      </Button>
     </form>
-    <p className="mt-4 text-center text-sm text-(--sea-ink-soft)">
+    <p className="mt-4 text-center text-sm text-slate-400">
      Don&apos;t have an account?{" "}
-     <Link className="font-medium text-(--lagoon-deep)" to="/auth/register">
+     <Link className="font-medium text-teal-400" to="/auth/register">
       Sign Up
      </Link>
     </p>

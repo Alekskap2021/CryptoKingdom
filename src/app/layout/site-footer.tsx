@@ -2,14 +2,14 @@ export const SiteFooter = () => {
  const currentYear = new Date().getFullYear();
 
  return (
-  <footer className="mt-20 px-4 pt-10 pb-14 text-(--sea-ink-soft)">
+  <footer className="mt-20 px-4 pt-10 pb-14 text-slate-400">
    <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
     <p className="m-0 text-sm">&copy; {currentYear} Your name here. All rights reserved.</p>
     <p className="m-0">Built with TanStack Start</p>
    </div>
    <div className="mt-4 flex justify-center gap-4">
     <a
-     className="rounded-xl p-2 text-(--sea-ink-soft) transition hover:bg-(--link-bg-hover) hover:text-(--sea-ink)"
+     className="rounded-xl p-2 text-slate-400 transition hover:bg-slate-800/80 hover:text-slate-100"
      href="https://x.com/tan_stack"
      rel="noreferrer"
      target="_blank">
@@ -22,7 +22,7 @@ export const SiteFooter = () => {
      </svg>
     </a>
     <a
-     className="rounded-xl p-2 text-(--sea-ink-soft) transition hover:bg-(--link-bg-hover) hover:text-(--sea-ink)"
+     className="rounded-xl p-2 text-slate-400 transition hover:bg-slate-800/80 hover:text-slate-100"
      href="https://github.com/TanStack"
      rel="noreferrer"
      target="_blank">

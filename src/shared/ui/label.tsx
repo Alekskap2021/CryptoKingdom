@@ -8,6 +8,6 @@ export const Label = function Label({
 }: LabelHTMLAttributes<HTMLLabelElement> & { ref?: RefObject<HTMLLabelElement | null> }) {
  return (
   // eslint-disable-next-line jsx-a11y/label-has-associated-control
-  <label className={cn("text-sm font-medium text-(--sea-ink)", className)} ref={ref} {...props} />
+  <label className={cn("text-sm font-medium text-slate-100", className)} ref={ref} {...props} />
  );
 };

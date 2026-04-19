@@ -2,6 +2,7 @@ import { Link, useNavigate, useRouteContext } from "@tanstack/react-router";
 import { LogOut } from "lucide-react";
 import { cn } from "@/shared/lib/cn";
 import { Button } from "@/shared/ui";
+import { Logo } from "@/shared/ui/Logo.tsx";
 import { authClient } from "@/features/Authentication";
 import { navbarConfig } from "../configs/navbarConfig";
 
@@ -24,28 +25,26 @@ export const DesktopNavbar = (props: DesktopNavbarProps) => {
   <aside
    className={cn(
     className,
-    `hidden w-60 shrink-0 border-r border-(--line) bg-(--surface-strong) md:block`,
+    `hidden w-60 shrink-0 border-r border-slate-700 bg-slate-900 md:block`,
    )}>
    <nav className="flex h-full flex-col">
-    <div className="border-b border-(--line) p-4">
-     <Link className="text-lg font-bold text-(--sea-ink) no-underline" to="/">
-      CryptoKingdom
-     </Link>
-    </div>
+    <Link className="p-3 text-lg font-bold text-slate-100 no-underline" to="/">
+     <Logo className="w-full" />
+    </Link>
 
     <div className="flex-1 overflow-y-auto p-3">
      {navbarConfig.map(({ groupItems, groupLabel }) => (
       <div className="mt-6" key={groupLabel}>
-       <p className="mb-2 px-3 text-xs font-semibold tracking-wider text-(--sea-ink-soft)/60 uppercase">
+       <p className="mb-2 px-3 text-xs font-semibold tracking-wider text-slate-500 uppercase">
         {groupLabel}
        </p>
 
        <div className="space-y-1">
         {groupItems.map(({ icon: Icon, label, linkOptions }) => (
          <Link
-          activeProps={{ className: "bg-(--surface) text-(--sea-ink)" }}
+          activeProps={{ className: "bg-slate-800 text-slate-100" }}
           key={linkOptions.to}
-          className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-(--sea-ink-soft) no-underline transition hover:bg-(--surface) hover:text-(--sea-ink)"
+          className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-400 no-underline transition hover:bg-slate-800 hover:text-slate-100"
           {...linkOptions}>
           <Icon size={18} />
           {label}
@@ -56,10 +55,10 @@ export const DesktopNavbar = (props: DesktopNavbarProps) => {
      ))}
     </div>
 
-    <div className="border-t border-(--line) p-3">
+    <div className="border-t border-slate-700 p-3">
      <div className="mb-2 px-3">
-      <p className="truncate text-sm font-medium text-(--sea-ink)">{user?.name}</p>
-      <p className="truncate text-xs text-(--sea-ink-soft)">{user?.email}</p>
+      <p className="truncate text-sm font-medium text-slate-100">{user?.name}</p>
+      <p className="truncate text-xs text-slate-400">{user?.email}</p>
      </div>
      <Button
       className="w-full justify-start gap-3"

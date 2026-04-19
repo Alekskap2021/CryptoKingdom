@@ -73,10 +73,10 @@ function DashboardOverviewPage() {
  return (
   <div className="space-y-6">
    <div className="flex items-center justify-between">
-    <h2 className="text-xl font-bold text-(--sea-ink)">Overview</h2>
+    <h2 className="text-xl font-bold text-slate-100">Overview</h2>
     {keys.length > 1 && (
      <select
-      className="rounded-lg border border-(--line) bg-(--surface-strong) px-3 py-1.5 text-sm"
+      className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm"
       onChange={(e) => setActiveKey(keys.find((k) => k.id === e.target.value) || null)}
       value={activeKey?.id}>
       {keys.map((k) => (
@@ -146,15 +146,15 @@ function KpiCard({
  return (
   <Card>
    <div className="flex items-center gap-3">
-    <div className="flex size-10 items-center justify-center rounded-lg bg-(--surface)">
-     <Icon className="size-5 text-(--lagoon-deep)" />
+    <div className="flex size-10 items-center justify-center rounded-lg bg-slate-800">
+     <Icon className="size-5 text-teal-400" />
     </div>
     <div>
-     <p className="text-xs text-(--sea-ink-soft)">{label}</p>
+     <p className="text-xs text-slate-400">{label}</p>
      {loading ? (
       <Spinner className="mt-1" size={16} />
      ) : (
-      <p className="text-lg font-bold text-(--sea-ink)">{value}</p>
+      <p className="text-lg font-bold text-slate-100">{value}</p>
      )}
     </div>
    </div>
@@ -257,9 +257,7 @@ function OrdersTable({ loading, orders }: { loading: boolean; orders: Order[] | 
   <Card>
    <CardHeader>
     <CardTitle>Open Orders</CardTitle>
-    <Link
-     className="text-xs font-medium text-(--lagoon-deep) no-underline hover:underline"
-     to="/orders">
+    <Link className="text-xs font-medium text-teal-400 no-underline hover:underline" to="/orders">
      View all
     </Link>
    </CardHeader>

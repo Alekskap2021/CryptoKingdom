@@ -22,12 +22,12 @@ export function DataTable<T>({ emptyMessage = "No data", loading, table }: DataT
    <table className="w-full text-sm">
     <thead>
      {table.getHeaderGroups().map((headerGroup) => (
-      <tr className="border-b border-(--line)" key={headerGroup.id}>
+      <tr className="border-b border-slate-700" key={headerGroup.id}>
        {headerGroup.headers.map((header) => (
         <th
          className={cn(
-          `px-3 py-2 text-left text-xs font-semibold tracking-wider text-(--sea-ink-soft) uppercase`,
-          header.column.getCanSort() && `cursor-pointer select-none hover:text-(--sea-ink)`,
+          `px-3 py-2 text-left text-xs font-semibold tracking-wider text-slate-400 uppercase`,
+          header.column.getCanSort() && `cursor-pointer select-none hover:text-slate-100`,
          )}
          key={header.id}
          onClick={header.column.getToggleSortingHandler()}>
@@ -45,17 +45,15 @@ export function DataTable<T>({ emptyMessage = "No data", loading, table }: DataT
     <tbody>
      {table.getRowModel().rows.length === 0 ? (
       <tr>
-       <td
-        className="px-3 py-8 text-center text-(--sea-ink-soft)"
-        colSpan={table.getAllColumns().length}>
+       <td className="px-3 py-8 text-center text-slate-400" colSpan={table.getAllColumns().length}>
         {emptyMessage}
        </td>
       </tr>
      ) : (
       table.getRowModel().rows.map((row) => (
-       <tr className="border-b border-(--line)/50 transition hover:bg-(--surface)/50" key={row.id}>
+       <tr className="border-b border-slate-700/50 transition hover:bg-slate-800/50" key={row.id}>
         {row.getVisibleCells().map((cell) => (
-         <td className="px-3 py-2 text-(--sea-ink)" key={cell.id}>
+         <td className="px-3 py-2 text-slate-100" key={cell.id}>
           {flexRender(cell.column.columnDef.cell, cell.getContext())}
          </td>
         ))}

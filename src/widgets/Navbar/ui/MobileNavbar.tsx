@@ -19,7 +19,7 @@ export const MobileNavbar = (props: MobileNavbarProps) => {
 
  return (
   <>
-   <nav className={cn("fixed inset-x-0 bottom-0 z-20 bg-(--surface-strong) p-4", className)}>
+   <nav className={cn("fixed inset-x-0 bottom-0 z-20 bg-slate-900 p-4", className)}>
     {mainLinks.map(({ icon: Icon, linkOptions }) => (
      <Link key={linkOptions.to} {...linkOptions}>
       <Icon className="size-6 min-[425px]:size-8" />
@@ -27,7 +27,7 @@ export const MobileNavbar = (props: MobileNavbarProps) => {
     ))}
 
     <Button
-     className={cn("inline-block p-0", { "text-(--sea-ink)": isSettingsOpened })}
+     className={cn("inline-block p-0", { "text-slate-100": isSettingsOpened })}
      variant="clean"
      onClick={() => setIsSettingsOpened((prev) => !prev)}>
      <Settings className="size-6 min-[425px]:size-8" />
@@ -35,15 +35,12 @@ export const MobileNavbar = (props: MobileNavbarProps) => {
    </nav>
 
    <nav
-    className={cn(
-     "fixed inset-0 z-10 flex flex-col gap-4 bg-(--surface-strong) p-4 transition-transform",
-     {
-      "translate-y-0": isSettingsOpened,
-      "translate-y-full": !isSettingsOpened,
+    className={cn("fixed inset-0 z-10 flex flex-col gap-4 bg-slate-900 p-4 transition-transform", {
+     "translate-y-0": isSettingsOpened,
+     "translate-y-full": !isSettingsOpened,
 
-      // hidden: !isSettingsOpened,
-     },
-    )}>
+     // hidden: !isSettingsOpened,
+    })}>
     {settingsLinks.map((link) => {
      const { icon: Icon, label, linkOptions } = link;
      return (

@@ -1,4 +1,5 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { Logo } from "@/shared/ui/Logo.tsx";
 import { authMiddleware, getSession } from "@/features/Authentication/server";
 import { listApiKeys } from "@/features/ManageBybitApiKey";
 import { Navbar } from "@/widgets/Navbar";
@@ -9,8 +10,8 @@ function MainLayout() {
    <Navbar />
 
    <div className="flex flex-1 flex-col">
-    <header className="flex items-center gap-3 border-b border-(--line) bg-(--surface-strong) px-4 py-3 md:hidden">
-     <span className="text-sm font-bold text-(--sea-ink)">CryptoKingdom</span>
+    <header className="flex items-center gap-3 border-b border-slate-700 bg-slate-900 px-4 py-3 md:hidden">
+     <Logo isShort />
     </header>
 
     <main className="flex-1 overflow-y-auto p-4 md:p-6">

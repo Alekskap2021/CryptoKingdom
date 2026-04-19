@@ -14,9 +14,9 @@ export const Card = function Card({
  return (
   <div
    className={cn(
-    "rounded-xl border border-(--line) p-5",
+    "rounded-xl border border-slate-700 p-5",
     variant === "default" &&
-     `bg-linear-to-br from-(--surface-strong) to-(--surface) shadow-[0_1px_0_var(--inset-glint)_inset,0_12px_28px_rgba(30,90,72,0.08)]`,
+     `bg-linear-to-br from-slate-900 to-slate-800 shadow-[0_1px_0_rgba(255,255,255,0.06)_inset,0_12px_28px_rgba(0,0,0,0.25)]`,
     variant === "outlined" && "bg-transparent",
     className,
    )}
@@ -43,6 +43,6 @@ export const CardTitle = function CardTitle({
 }: HTMLAttributes<HTMLHeadingElement> & { ref?: React.RefObject<HTMLHeadingElement | null> }) {
  return (
   // eslint-disable-next-line jsx-a11y/heading-has-content
-  <h3 className={cn("text-base font-semibold text-(--sea-ink)", className)} ref={ref} {...props} />
+  <h3 className={cn("text-base font-semibold text-slate-100", className)} ref={ref} {...props} />
  );
 };

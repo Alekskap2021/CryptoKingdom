@@ -10,7 +10,7 @@ export const RootDocument = ({ children }: { children: ReactNode }) => {
    <head>
     <HeadContent />
    </head>
-   <body className="font-sans wrap-anywhere antialiased selection:bg-[rgba(79,184,178,0.24)]">
+   <body className="font-sans wrap-anywhere antialiased selection:bg-teal-500/25">
     {children}
     <TanStackDevtools
      config={{

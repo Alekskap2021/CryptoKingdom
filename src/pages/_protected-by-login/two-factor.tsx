@@ -85,15 +85,15 @@ function TwoFactorPage() {
 
  return (
   // <div>
-  //  <p className="text-sm font-medium text-(--sea-ink)">Two-Factor Authentication</p>
-  //  <p className="text-xs text-(--sea-ink-soft)">
+  //  <p className="text-sm font-medium text-slate-100">Two-Factor Authentication</p>
+  //  <p className="text-xs text-slate-400">
   //   {is2FAEnabled ? "Your account is secured with 2FA" : "Add extra security to your account"}
   //  </p>
   // </div>
   <div className="space-y-6">
    <div>
-    <h2 className="text-xl font-bold text-(--sea-ink)">Two-Factor Authentication</h2>
-    <p className="text-sm text-(--sea-ink-soft)">Add an extra layer of security to your account.</p>
+    <h2 className="text-xl font-bold text-slate-100">Two-Factor Authentication</h2>
+    <p className="text-sm text-slate-400">Add an extra layer of security to your account.</p>
    </div>
 
    <Card>
@@ -122,29 +122,27 @@ function TwoFactorPage() {
     {step === "setup" && totpUri && (
      <div className="space-y-4">
       <div className="space-y-2">
-       <p className="text-sm font-medium text-(--sea-ink)">
+       <p className="text-sm font-medium text-slate-100">
         Scan this QR code with your authenticator app:
        </p>
-       <div className="flex justify-center rounded-lg border border-(--line) bg-white p-4">
+       <div className="flex justify-center rounded-lg border border-slate-700 bg-slate-950 p-4">
         <img
          alt="TOTP QR Code"
          src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(totpUri)}`}
         />
        </div>
-       <details className="text-xs text-(--sea-ink-soft)">
+       <details className="text-xs text-slate-400">
         <summary className="cursor-pointer">Can&apos;t scan? Enter this key manually</summary>
-        <code className="mt-1 block rounded-sm bg-(--surface) p-2 text-xs break-all">
-         {totpUri}
-        </code>
+        <code className="mt-1 block rounded-sm bg-slate-800 p-2 text-xs break-all">{totpUri}</code>
        </details>
       </div>
 
       {backupCodes.length > 0 && (
        <div className="space-y-2">
-        <p className="text-sm font-medium text-(--sea-ink)">
+        <p className="text-sm font-medium text-slate-100">
          Save these backup codes in a safe place:
         </p>
-        <div className="grid grid-cols-2 gap-1 rounded-lg border border-(--line) bg-(--surface) p-3">
+        <div className="grid grid-cols-2 gap-1 rounded-lg border border-slate-700 bg-slate-800 p-3">
          {backupCodes.map((code) => (
           <code className="text-xs" key={code}>
            {code}
@@ -177,7 +175,7 @@ function TwoFactorPage() {
 
     {step === "confirm" && (
      <div className="space-y-3">
-      <p className="text-sm text-(--sea-ink)">
+      <p className="text-sm text-slate-100">
        2FA is now active. You will need your authenticator app to sign in.
       </p>
       <Button onClick={() => setStep("idle")} variant="secondary">

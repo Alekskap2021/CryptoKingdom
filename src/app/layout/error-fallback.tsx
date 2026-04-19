@@ -9,8 +9,8 @@ export function ErrorFallback({ error, reset }: ErrorComponentProps) {
     <AlertTriangle className="size-8 text-red-600" />
    </div>
    <div className="space-y-2">
-    <h1 className="text-2xl font-bold text-(--sea-ink)">Something went wrong</h1>
-    <p className="max-w-md text-sm text-(--sea-ink-soft)">
+    <h1 className="text-2xl font-bold text-slate-100">Something went wrong</h1>
+    <p className="max-w-md text-sm text-slate-400">
      {error.message || "An unexpected error occurred. Please try again."}
     </p>
    </div>

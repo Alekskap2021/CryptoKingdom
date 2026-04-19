@@ -115,9 +115,9 @@ function RegisterPage() {
       {loading ? "Creating account..." : "Sign Up"}
      </Button>
     </form>
-    <p className="mt-4 text-center text-sm text-(--sea-ink-soft)">
+    <p className="mt-4 text-center text-sm text-slate-400">
      Already have an account?{" "}
-     <Link className="font-medium text-(--lagoon-deep)" to="/auth/login">
+     <Link className="font-medium text-teal-400" to="/auth/login">
       Sign In
      </Link>
     </p>

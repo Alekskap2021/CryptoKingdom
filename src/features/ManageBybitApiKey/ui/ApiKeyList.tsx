@@ -68,9 +68,9 @@ export const ApiKeyList = (props: ApiKeyListProps) => {
          </Button>
         </div>
        ) : (
-        <p className="truncate text-sm font-medium text-(--sea-ink)">{key.label}</p>
+        <p className="truncate text-sm font-medium text-slate-100">{key.label}</p>
        )}
-       <p className="mt-0.5 font-mono text-xs text-(--sea-ink-soft)">{key.maskedKey}</p>
+       <p className="mt-0.5 font-mono text-xs text-slate-400">{key.maskedKey}</p>
       </div>
       <div className="flex items-center gap-2">
        {key.testnet && <Badge variant="info">Testnet</Badge>}

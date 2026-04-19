@@ -62,7 +62,7 @@ export const ApiKeyAddForm = (props: ApiKeyAddFormProps) => {
      />
     </div>
 
-    <label className="flex items-center gap-2 text-sm text-(--sea-ink)">
+    <label className="flex items-center gap-2 text-sm text-slate-100">
      <input className="rounded-sm" name="testnet" type="checkbox" />
      Testnet key
     </label>

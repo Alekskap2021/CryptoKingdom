@@ -91,11 +91,11 @@ function HistoryPage() {
  return (
   <div className="space-y-6">
    <div className="flex flex-wrap items-center justify-between gap-3">
-    <h2 className="text-xl font-bold text-(--sea-ink)">Trade History</h2>
+    <h2 className="text-xl font-bold text-slate-100">Trade History</h2>
     <div className="flex items-center gap-2">
      {keys.length > 1 && (
       <select
-       className="rounded-lg border border-(--line) bg-(--surface-strong) px-3 py-1.5 text-sm"
+       className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm"
        onChange={(e) => setActiveKey(keys.find((k) => k.id === e.target.value) || null)}
        value={activeKey?.id}>
        {keys.map((k) => (

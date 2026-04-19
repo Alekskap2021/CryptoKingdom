@@ -2,11 +2,11 @@ import { type HTMLAttributes } from "react";
 import { cn } from "../lib/cn";
 
 const variants = {
- danger: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
- default: "bg-(--surface) text-(--sea-ink-soft) border border-(--line)",
- info: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
- success: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300",
- warning: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300",
+ danger: "border border-red-900/50 bg-red-950/50 text-red-300",
+ default: "border border-slate-700 bg-slate-800 text-slate-400",
+ info: "border border-blue-900/50 bg-blue-950/50 text-blue-300",
+ success: "border border-emerald-900/50 bg-emerald-950/50 text-emerald-300",
+ warning: "border border-amber-900/50 bg-amber-950/50 text-amber-300",
 } as const;
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {

@@ -46,10 +46,10 @@ function ChartPage() {
  return (
   <div className="space-y-4">
    <div className="flex flex-wrap items-center justify-between gap-3">
-    <h2 className="text-xl font-bold text-(--sea-ink)">Chart</h2>
+    <h2 className="text-xl font-bold text-slate-100">Chart</h2>
     <div className="flex items-center gap-2">
      <select
-      className="rounded-lg border border-(--line) bg-(--surface-strong) px-3 py-1.5 text-sm"
+      className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm"
       onChange={(e) => setSymbol(e.target.value)}
       value={symbol}>
       {symbols.length > 0 ? (
@@ -62,13 +62,11 @@ function ChartPage() {
        <option value={symbol}>{symbol}</option>
       )}
      </select>
-     <div className="flex rounded-lg border border-(--line) bg-(--surface-strong)">
+     <div className="flex rounded-lg border border-slate-700 bg-slate-900">
       {INTERVALS.map((iv) => (
        <button
         className={`px-3 py-1.5 text-xs font-medium transition ${
-         iv.value === interval
-          ? `bg-(--lagoon-deep) text-white`
-          : `text-(--sea-ink-soft) hover:text-(--sea-ink)`
+         iv.value === interval ? `bg-teal-600 text-white` : `text-slate-400 hover:text-slate-100`
         } first:rounded-l-lg last:rounded-r-lg`}
         key={iv.value}
         onClick={() => setInterval(iv.value)}

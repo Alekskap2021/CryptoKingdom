@@ -4,10 +4,10 @@ import { cn } from "../lib/cn";
 const variants = {
  clean: "",
  danger: "bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500",
- ghost: "text-(--sea-ink-soft) hover:bg-(--surface) hover:text-(--sea-ink)",
- outline: "border border-(--line) bg-transparent text-(--sea-ink) hover:bg-(--surface)",
- primary: "bg-(--lagoon-deep) text-white hover:bg-(--lagoon) focus-visible:ring-(--lagoon)",
- secondary: "bg-(--surface) text-(--sea-ink) border border-(--line) hover:bg-(--surface-strong)",
+ ghost: "text-slate-400 hover:bg-slate-800 hover:text-slate-100",
+ outline: "border border-slate-700 bg-transparent text-slate-100 hover:bg-slate-800",
+ primary: "bg-teal-600 text-white hover:bg-teal-500 focus-visible:ring-teal-500",
+ secondary: "border border-slate-700 bg-slate-800 text-slate-100 hover:bg-slate-900",
 } as const;
 
 const sizes = {
@@ -33,7 +33,7 @@ export const Button = function Button({
  return (
   <button
    className={cn(
-    `inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg font-semibold transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50`,
+    `inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg font-semibold transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50`,
     variants[variant],
     sizes[size],
     className,

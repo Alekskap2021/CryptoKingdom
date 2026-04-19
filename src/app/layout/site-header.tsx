@@ -2,11 +2,11 @@ import { Link } from "@tanstack/react-router";
 
 export const SiteHeader = () => {
  return (
-  <header className="sticky top-0 z-50 border-b border-(--line) bg-(--header-bg) px-4 backdrop-blur-lg">
+  <header className="sticky top-0 z-50 border-b border-slate-700 bg-slate-950/90 px-4 backdrop-blur-lg">
    <nav className="flex flex-wrap items-center gap-x-3 gap-y-2 py-3 sm:py-4">
     <h2 className="m-0 shrink-0 text-base font-semibold tracking-tight">
      <Link
-      className="inline-flex items-center gap-2 rounded-full border border-(--chip-line) bg-(--chip-bg) px-3 py-1.5 text-sm text-(--sea-ink) no-underline shadow-[0_8px_24px_rgba(30,90,72,0.08)] sm:px-4 sm:py-2"
+      className="inline-flex items-center gap-2 rounded-full border border-slate-600 bg-slate-800/90 px-3 py-1.5 text-sm text-slate-100 no-underline shadow-[0_8px_24px_rgba(0,0,0,0.35)] sm:px-4 sm:py-2"
       to="/">
       <span className="size-2 rounded-full bg-[linear-gradient(90deg,#56c6be,#7ed3bf)]" />
       TanStack Start
@@ -15,7 +15,7 @@ export const SiteHeader = () => {
 
     <div className="ml-auto flex items-center gap-1.5 sm:ml-0 sm:gap-2">
      <a
-      className="hidden rounded-xl p-2 text-(--sea-ink-soft) transition hover:bg-(--link-bg-hover) hover:text-(--sea-ink) sm:block"
+      className="hidden rounded-xl p-2 text-slate-400 transition hover:bg-slate-800/80 hover:text-slate-100 sm:block"
       href="https://x.com/tan_stack"
       rel="noreferrer"
       target="_blank">
@@ -28,7 +28,7 @@ export const SiteHeader = () => {
       </svg>
      </a>
      <a
-      className="hidden rounded-xl p-2 text-(--sea-ink-soft) transition hover:bg-(--link-bg-hover) hover:text-(--sea-ink) sm:block"
+      className="hidden rounded-xl p-2 text-slate-400 transition hover:bg-slate-800/80 hover:text-slate-100 sm:block"
       href="https://github.com/TanStack"
       rel="noreferrer"
       target="_blank">
