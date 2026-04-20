@@ -1,4 +1,5 @@
-import { type ButtonHTMLAttributes, type RefObject } from "react";
+import { Button as ButtonBase } from "@base-ui/react/button";
+import { type ComponentProps, type RefObject } from "react";
 import { cn } from "../lib/cn";
 
 const variants = {
@@ -17,7 +18,7 @@ const sizes = {
  sm: "h-7 px-3 text-xs",
 } as const;
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ComponentProps<typeof ButtonBase> {
  size?: keyof typeof sizes;
  variant?: keyof typeof variants;
 }
@@ -31,7 +32,7 @@ export const Button = function Button({
  ...props
 }: ButtonProps & { ref?: RefObject<HTMLButtonElement | null> }) {
  return (
-  <button
+  <ButtonBase
    className={cn(
     `inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg font-semibold transition focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50`,
     variants[variant],
