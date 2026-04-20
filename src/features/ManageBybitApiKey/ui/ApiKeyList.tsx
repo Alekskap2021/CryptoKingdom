@@ -2,7 +2,7 @@ import { Check, Pencil, Trash2, X } from "lucide-react";
 import { useState } from "react";
 import { Badge, Button, Card, Input } from "@/shared/ui";
 import { deleteApiKey, updateApiKey } from "../api/api-keys.actions.ts";
-import type { ApiKeyRecord } from "../api/api-keys.schema.ts";
+import type { ApiKeyRecord } from "../model/schema.ts";
 
 interface ApiKeyListProps {
  keys: ApiKeyRecord[];

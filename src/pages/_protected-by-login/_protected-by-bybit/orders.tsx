@@ -11,14 +11,12 @@ import { Trash2 } from "lucide-react";
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import {
  cancelOrder,
- fetchOpenOrders,
  fetchSymbols,
  placeOrder,
- queryKeys,
- type Order,
  type PlaceOrderInput,
  type SymbolInfo,
 } from "@/shared/api/bybit";
+import { formatUsd } from "@/shared/helpers/formatUsd.ts";
 import {
  Badge,
  Button,
@@ -32,6 +30,7 @@ import {
 } from "@/shared/ui";
 import type { ApiKeyRecord } from "@/features/ManageBybitApiKey";
 import { listApiKeys } from "@/features/ManageBybitApiKey";
+import { fetchOpenOrders, openOrdersQueryKey, type Order } from "@/widgets/OpenOrdersOverview";
 
 function OrdersPage() {
  const queryClient = useQueryClient();
@@ -75,7 +74,7 @@ function OrdersPage() {
  const ordersQuery = useQuery({
   enabled: !!activeKey,
   queryFn: () => fetchOpenOrders({ data: { apiKeyId: activeKey!.id } }),
-  queryKey: queryKeys.openOrders(activeKey?.id || ""),
+  queryKey: openOrdersQueryKey(activeKey?.id || ""),
   refetchInterval: 10_000,
  });
 
@@ -99,7 +98,7 @@ function OrdersPage() {
    const result = await placeOrder({ data: input });
    setFormSuccess(`Order placed: ${result.orderId}`);
    setShowForm(false);
-   await queryClient.invalidateQueries({ queryKey: queryKeys.openOrders(activeKey!.id) });
+   await queryClient.invalidateQueries({ queryKey: openOrdersQueryKey(activeKey!.id) });
   } catch (err) {
    setFormError(err instanceof Error ? err.message : "Failed to place order");
   }
@@ -110,7 +109,7 @@ function OrdersPage() {
   if (!activeKey || !confirm("Cancel this order?")) return;
   try {
    await cancelOrder({ data: { apiKeyId: activeKey.id, orderId, symbol } });
-   await queryClient.invalidateQueries({ queryKey: queryKeys.openOrders(activeKey.id) });
+   await queryClient.invalidateQueries({ queryKey: openOrdersQueryKey(activeKey.id) });
   } catch {
    /* ignore */
   }
@@ -262,13 +261,6 @@ function OrdersPage() {
    </Card>
   </div>
  );
-}
-
-function formatUsd(value: string | undefined): string {
- if (!value) return "-";
- const num = Number(value);
- if (Number.isNaN(num)) return value;
- return `$${num.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: 2 })}`;
 }
 
 export const Route = createFileRoute("/_protected-by-login/_protected-by-bybit/orders")({

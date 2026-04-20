@@ -14,13 +14,7 @@ export {
  placeOrderSchema,
  type PlaceOrderInput,
 } from "./orders";
-export {
- fetchBalance,
- fetchExecutions,
- fetchOpenOrders,
- fetchPositions,
- queryKeys,
-} from "./queries";
+export { fetchExecutions, queryKeys } from "./queries";
 export {
  balanceSchema,
  executionSchema,
