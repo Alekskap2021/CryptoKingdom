@@ -6,6 +6,10 @@
  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
 }
 
+@utility bg-gradient {
+ @apply bg-linear-to-br from-slate-900 to-slate-800;
+}
+
 * {
  box-sizing: border-box;
 }
@@ -57,15 +61,6 @@ body::after {
  mask-image: radial-gradient(circle at 50% 30%, black, transparent 78%);
 }
 
-a {
- text-decoration-color: rgba(45, 212, 191, 0.35);
- text-decoration-thickness: 1px;
- text-underline-offset: 2px;
-}
-
-a:hover {
- color: rgb(45 212 191);
-}
 
 code {
  font-size: 0.9em;
@@ -117,8 +112,7 @@ pre code {
 }
 
 button,
-.island-shell,
-a {
+.island-shell{
  transition:
   background-color 180ms ease,
   color 180ms ease,

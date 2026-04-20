@@ -10,7 +10,7 @@ import { assertRateLimit } from "@/shared/lib/rate-limit.ts";
 import { withSafeErrors } from "@/shared/lib/safe-error.ts";
 // eslint-disable-next-line @conarti/feature-sliced/layers-slices
 import { ensureSession } from "@/features/Authentication/server.ts";
-import { apiKeySchema, apiKeyUpdateSchema, type ApiKeyRecord } from "./api-keys.schema.ts";
+import { apiKeySchema, apiKeyUpdateSchema, type ApiKeyRecord } from "../model/schema.ts";
 
 export const listApiKeys = createServerFn({ method: "GET" }).handler(
  withSafeErrors(async (): Promise<ApiKeyRecord[]> => {

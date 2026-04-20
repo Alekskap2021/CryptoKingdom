@@ -1,83 +1,92 @@
-import { type FormEvent, useState } from "react";
-import { Button, Card, CardHeader, CardTitle, Input, Label } from "@/shared/ui";
-import { createApiKey } from "../api/api-keys.actions.ts";
+import { Form } from "@base-ui/react";
+import { Plus } from "lucide-react";
+import { useValidateForm } from "@/shared/hooks/useValidateForm.ts";
+import { Button, Input } from "@/shared/ui";
+import { CheckboxField } from "@/shared/ui/CheckboxField.tsx";
+import { Dialog } from "@/shared/ui/Dialog.tsx";
+import { Field } from "@/shared/ui/Field.tsx";
+import { useMutateAddApiKey } from "../hooks/useMutateAddApiKey.ts";
+import { type ApiKeyInput, apiKeySchema } from "../model/schema.ts";
 
-interface ApiKeyAddFormProps {
- onCancel: () => void;
- onSuccess?: () => void;
-}
+const createFormTrigger = Dialog.createHandle();
 
-export const ApiKeyAddForm = (props: ApiKeyAddFormProps) => {
- const { onCancel, onSuccess } = props;
- const [submitting, setSubmitting] = useState(false);
- const [formError, setFormError] = useState<null | string>(null);
+export const CreateApiKeyTrigger = () => {
+ return (
+  <Dialog.Trigger
+   handle={createFormTrigger}
+   render={
+    <Button>
+     <Plus size={16} />
+     Add Key
+    </Button>
+   }
+  />
+ );
+};
 
- async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-  e.preventDefault();
-  setFormError(null);
-  setSubmitting(true);
-
-  const fd = new FormData(e.currentTarget);
-  try {
-   await createApiKey({
-    data: {
-     apiKey: fd.get("apiKey") as string,
-     apiSecret: fd.get("apiSecret") as string,
-     label: fd.get("label") as string,
-     testnet: fd.get("testnet") === "on",
-    },
-   });
-   onSuccess?.();
-  } catch (err) {
-   setFormError(err instanceof Error ? err.message : "Failed to create key");
-  }
-  setSubmitting(false);
- }
+export const ApiKeyAddForm = () => {
+ const { errors, validateForm } = useValidateForm(apiKeySchema);
+ const { isPending, mutateAsync } = useMutateAddApiKey();
 
  return (
-  <Card>
-   <CardHeader>
-    <CardTitle>Add New API Key</CardTitle>
-   </CardHeader>
-
-   <form className="space-y-4" onSubmit={handleSubmit}>
-    <div className="space-y-1.5">
-     <Label htmlFor="label">Label</Label>
-     <Input id="label" name="label" placeholder="e.g. Main Trading" required />
+  <Dialog handle={createFormTrigger}>
+   <Dialog.Content className="w-1/3">
+    <div className="start mb-5 flex flex-col items-start gap-3">
+     <Dialog.Title className="text-left">Add New API Key</Dialog.Title>
+     <Dialog.Description className="text-left">
+      Enter your API key from Inishe exchange to enable trading and connect to Bybit API on our
+      platform. This will allow you to trade, manage positions, and use all trading features
+      directly through our website. <br />
+     </Dialog.Description>
     </div>
 
-    <div className="space-y-1.5">
-     <Label htmlFor="apiKey">API Key</Label>
-     <Input id="apiKey" name="apiKey" placeholder="Your Bybit API key" required />
-    </div>
+    <Form
+     className="space-y-4"
+     errors={errors}
+     validationMode={"onBlur"}
+     onFormSubmit={(values: ApiKeyInput) => {
+      validateForm(values);
+      mutateAsync(values);
+     }}>
+     <Field label="Name" name="label">
+      <Input placeholder="e.g. Main Trading" />
+     </Field>
 
-    <div className="space-y-1.5">
-     <Label htmlFor="apiSecret">API Secret</Label>
-     <Input
-      id="apiSecret"
-      name="apiSecret"
-      placeholder="Your Bybit API secret"
-      required
-      type="password"
-     />
-    </div>
+     <Field label="API Key" name="apiKey">
+      <Input placeholder="Your Bybit API key" />
+     </Field>
 
-    <label className="flex items-center gap-2 text-sm text-slate-100">
-     <input className="rounded-sm" name="testnet" type="checkbox" />
-     Testnet key
-    </label>
+     <Field label="API Secret" name="apiSecret">
+      <Input placeholder="Your Bybit API secret" />
+     </Field>
 
-    {formError && <p className="text-sm text-red-600">{formError}</p>}
+     <CheckboxField name="testnet">Testnet key</CheckboxField>
 
-    <div className="flex gap-2">
-     <Button disabled={submitting} type="submit">
-      {submitting ? "Saving…" : "Save Key"}
-     </Button>
-     <Button disabled={submitting} onClick={onCancel} type="button" variant="ghost">
-      Cancel
-     </Button>
-    </div>
-   </form>
-  </Card>
+     <div className="flex justify-end gap-2">
+      <Dialog.Close
+       render={
+        <Button type="button" variant="ghost">
+         Cancel
+        </Button>
+       }
+      />
+
+      <Button
+       render={
+        <a href="https://www.bybit.com/app/user/api-management" target="_blank" rel="noreferrer">
+         Create API Key →
+        </a>
+       }
+       variant="outline"
+       nativeButton={false}
+      />
+
+      <Button type="submit" disabled={isPending}>
+       Save Key
+      </Button>
+     </div>
+    </Form>
+   </Dialog.Content>
+  </Dialog>
  );
 };
