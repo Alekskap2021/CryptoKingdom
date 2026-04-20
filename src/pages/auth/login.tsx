@@ -54,7 +54,7 @@ function LoginPage() {
    return;
   }
 
-  const redirectTo = (search as { redirect?: string }).redirect || "/dashboard";
+  const redirectTo = (search as { redirect?: string }).redirect || "/";
   await navigate({ to: redirectTo });
  }
 
@@ -73,7 +73,7 @@ function LoginPage() {
    return;
   }
 
-  const redirectTo = (search as { redirect?: string }).redirect || "/dashboard";
+  const redirectTo = (search as { redirect?: string }).redirect || "/";
   await navigate({ to: redirectTo });
  }
 
