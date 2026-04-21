@@ -7,13 +7,7 @@ export {
 } from "./ws-manager";
 export { createWsSyncHandler } from "./ws-sync";
 export { fetchKlines, fetchSymbols, marketQueryKeys } from "./market";
-export {
- amendOrder,
- cancelOrder,
- placeOrder,
- placeOrderSchema,
- type PlaceOrderInput,
-} from "./orders";
+export { amendOrder } from "./orders";
 export { fetchExecutions, queryKeys } from "./queries";
 export {
  balanceSchema,
