@@ -1,13 +1,12 @@
 import { createServerFn } from "@tanstack/react-start";
 import { createBybitClient, normalizeBybitError } from "@/shared/api/bybit/client.ts";
-// eslint-disable-next-line @conarti/feature-sliced/layers-slices
-import { ensureSession } from "@/features/Authentication/server.ts";
+import { getSession } from "@/shared/helpers/getSession";
 import { placeBybitOrderSchema, type PlaceBybitOrderInput } from "../model/placeBybitOrder.ts";
 
 export const placeBybitOrder = createServerFn({ method: "POST" })
  .inputValidator((data: unknown) => placeBybitOrderSchema.parse(data))
  .handler(async ({ data }): Promise<{ orderId: string; orderLinkId: string }> => {
-  const session = await ensureSession();
+  const session = await getSession();
   const client = await createBybitClient(data.apiKeyId, session.user.id);
 
   const params: Record<string, string> = {

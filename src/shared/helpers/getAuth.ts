@@ -2,8 +2,8 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { twoFactor } from "better-auth/plugins";
 import { tanstackStartCookies } from "better-auth/tanstack-start";
-import { getDb } from "@/shared/db/drizzle";
-import { secretEnv } from "@/shared/env";
+import { getDb } from "../db/drizzle";
+import { secretEnv } from "../env";
 
 function createAuth() {
  return betterAuth({

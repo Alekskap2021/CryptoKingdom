@@ -1,13 +1,12 @@
 import { createServerFn } from "@tanstack/react-start";
 import { createBybitClient, normalizeBybitError } from "@/shared/api/bybit/client.ts";
-// eslint-disable-next-line @conarti/feature-sliced/layers-slices
-import { ensureSession } from "@/features/Authentication/server.ts";
+import { getSession } from "@/shared/helpers/getSession";
 import { cancelBybitOrderSchema, type CancelBybitOrderInput } from "../model/cancelBybitOrder.ts";
 
 export const cancelBybitOrder = createServerFn({ method: "POST" })
  .inputValidator((data: unknown) => cancelBybitOrderSchema.parse(data))
  .handler(async ({ data }): Promise<{ orderId: string }> => {
-  const session = await ensureSession();
+  const session = await getSession();
   const client = await createBybitClient(data.apiKeyId, session.user.id);
 
   const result = await client.cancelOrder({

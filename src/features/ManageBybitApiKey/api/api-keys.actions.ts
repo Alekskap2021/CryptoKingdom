@@ -5,16 +5,15 @@ import { and, desc, eq } from "drizzle-orm";
 import { getDb } from "@/shared/db/drizzle.ts";
 import { apiKeys } from "@/shared/db/schema.ts";
 import { secretEnv } from "@/shared/env";
+import { getSession } from "@/shared/helpers/getSession";
 import { encrypt, maskApiKey } from "@/shared/lib/crypto.ts";
 import { assertRateLimit } from "@/shared/lib/rate-limit.ts";
 import { withSafeErrors } from "@/shared/lib/safe-error.ts";
-// eslint-disable-next-line @conarti/feature-sliced/layers-slices
-import { ensureSession } from "@/features/Authentication/server.ts";
 import { apiKeySchema, apiKeyUpdateSchema, type ApiKeyRecord } from "../model/schema.ts";
 
 export const listApiKeys = createServerFn({ method: "GET" }).handler(
  withSafeErrors(async (): Promise<ApiKeyRecord[]> => {
-  const session = await ensureSession();
+  const session = await getSession();
 
   const rows = await getDb()
    .select({
@@ -46,7 +45,7 @@ export const createApiKey = createServerFn({ method: "POST" })
  .inputValidator((data: unknown) => apiKeySchema.parse(data))
  .handler(
   withSafeErrors(async ({ data }): Promise<ApiKeyRecord> => {
-   const session = await ensureSession();
+   const session = await getSession();
    assertRateLimit(`create:${session.user.id}`, { maxRequests: 5, windowMs: 60_000 });
 
    const client = new RestClientV5({
@@ -111,7 +110,7 @@ export const updateApiKey = createServerFn({ method: "POST" })
  })
  .handler(
   withSafeErrors(async ({ data }): Promise<{ success: boolean }> => {
-   const session = await ensureSession();
+   const session = await getSession();
    assertRateLimit(`update:${session.user.id}`, { maxRequests: 10, windowMs: 60_000 });
 
    const result = await getDb()
@@ -135,7 +134,7 @@ export const deleteApiKey = createServerFn({ method: "POST" })
  })
  .handler(
   withSafeErrors(async ({ data }): Promise<{ success: boolean }> => {
-   const session = await ensureSession();
+   const session = await getSession();
    assertRateLimit(`delete:${session.user.id}`, { maxRequests: 10, windowMs: 60_000 });
 
    const result = await getDb()

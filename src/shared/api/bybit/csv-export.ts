@@ -1,6 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-// eslint-disable-next-line @conarti/feature-sliced/layers-slices
-import { ensureSession } from "@/features/Authentication/server";
+import { getSession } from "../../helpers/getSession";
 import { createBybitClient, normalizeBybitError } from "./client";
 
 export const exportTradesCsv = createServerFn({ method: "POST" })
@@ -10,7 +9,7 @@ export const exportTradesCsv = createServerFn({ method: "POST" })
   return parsed;
  })
  .handler(async ({ data }): Promise<string> => {
-  const session = await ensureSession();
+  const session = await getSession();
   const client = await createBybitClient(data.apiKeyId, session.user.id);
 
   const allExecutions: Array<Record<string, string>> = [];

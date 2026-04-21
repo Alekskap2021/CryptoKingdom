@@ -1,7 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-// eslint-disable-next-line @conarti/feature-sliced/layers-slices
-import { ensureSession } from "@/features/Authentication/server";
+import { getSession } from "../helpers/getSession";
 import { createBybitClient, normalizeBybitError } from "./client";
 
 export const amendOrderSchema = z.object({
@@ -15,7 +14,7 @@ export const amendOrderSchema = z.object({
 export const amendOrder = createServerFn({ method: "POST" })
  .inputValidator((data: unknown) => amendOrderSchema.parse(data))
  .handler(async ({ data }) => {
-  const session = await ensureSession();
+  const session = await getSession();
   const client = await createBybitClient(data.apiKeyId, session.user.id);
 
   const params: Record<string, string> = {

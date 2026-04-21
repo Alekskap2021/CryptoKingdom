@@ -1,6 +1,7 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { getSession } from "@/shared/helpers/getSession";
 import { Logo } from "@/shared/ui/Logo.tsx";
-import { authMiddleware, getSession } from "@/features/Authentication/server";
+import { authMiddleware } from "@/features/Authentication/server";
 import { listApiKeys } from "@/features/ManageBybitApiKey";
 import { Navbar } from "@/widgets/Navbar";
 
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/_protected-by-login")({
 
   return {
    apiKeysList,
-   user: session?.user,
+   user: session.user,
   };
  },
 

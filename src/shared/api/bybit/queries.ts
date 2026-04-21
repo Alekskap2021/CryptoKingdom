@@ -1,6 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-// eslint-disable-next-line @conarti/feature-sliced/layers-slices
-import { ensureSession } from "@/features/Authentication/server";
+import { getSession } from "../../helpers/getSession";
 import { createBybitClient, normalizeBybitError } from "./client";
 import type { Execution } from "./types";
 
@@ -17,7 +16,7 @@ export const fetchExecutions = createServerFn({ method: "GET" })
   return parsed;
  })
  .handler(async ({ data }): Promise<{ cursor: string; list: Execution[] }> => {
-  const session = await ensureSession();
+  const session = await getSession();
   const client = await createBybitClient(data.apiKeyId, session.user.id);
 
   const result = await client.getExecutionList({

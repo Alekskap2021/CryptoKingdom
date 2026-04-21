@@ -1,13 +1,13 @@
 import { createServerFn } from "@tanstack/react-start";
 import { createBybitClient, normalizeBybitError } from "@/shared/api/bybit/client.ts";
 import { requireKeyId } from "@/shared/api/bybit/queries.ts";
-import { ensureSession } from "@/features/Authentication/server.ts";
+import { getSession } from "@/shared/helpers/getSession";
 import type { Balance } from "../model/balanceSchema";
 
 export const fetchBalance = createServerFn({ method: "GET" })
  .inputValidator(requireKeyId)
  .handler(async ({ data }): Promise<Balance> => {
-  const session = await ensureSession();
+  const session = await getSession();
   const client = await createBybitClient(data.apiKeyId, session.user.id);
 
   const result = await client.getWalletBalance({ accountType: "UNIFIED" });

@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { createBybitClient, normalizeBybitError } from "@/shared/api/bybit/client.ts";
 import { requireKeyId } from "@/shared/api/bybit/queries.ts";
-import { ensureSession } from "@/features/Authentication/server.ts";
+import { getSession } from "@/shared/helpers/getSession";
 
 interface TotalEquityDto {
  totalEquity: string;
@@ -10,7 +10,7 @@ interface TotalEquityDto {
 export const fetchTotalEquity = createServerFn({ method: "GET" })
  .inputValidator(requireKeyId)
  .handler(async ({ data }): Promise<TotalEquityDto> => {
-  const session = await ensureSession();
+  const session = await getSession();
   const client = await createBybitClient(data.apiKeyId, session.user.id);
 
   const result = await client.getWalletBalance({ accountType: "UNIFIED" });
