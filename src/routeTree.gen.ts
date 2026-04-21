@@ -10,11 +10,13 @@
 
 import { Route as rootRouteImport } from './pages/__root'
 import { Route as ProtectedByLoginRouteRouteImport } from './pages/_protected-by-login/route'
-import { Route as AuthRegisterRouteImport } from './pages/auth/register'
-import { Route as AuthLoginRouteImport } from './pages/auth/login'
+import { Route as AuthRouteRouteImport } from './pages/_auth/route'
 import { Route as ProtectedByLoginTwoFactorRouteImport } from './pages/_protected-by-login/two-factor'
 import { Route as ProtectedByLoginNoBybitApiKeyRouteImport } from './pages/_protected-by-login/no-bybit-api-key'
 import { Route as ProtectedByLoginApiKeysRouteImport } from './pages/_protected-by-login/api-keys'
+import { Route as AuthTwoFactorVerifyRouteImport } from './pages/_auth/two-factor-verify'
+import { Route as AuthSignUpRouteImport } from './pages/_auth/sign-up'
+import { Route as AuthSignInRouteImport } from './pages/_auth/sign-in'
 import { Route as ProtectedByLoginProtectedByBybitRouteRouteImport } from './pages/_protected-by-login/_protected-by-bybit/route'
 import { Route as ProtectedByLoginProtectedByBybitIndexRouteImport } from './pages/_protected-by-login/_protected-by-bybit/index'
 import { Route as ApiAuthSplatRouteImport } from './pages/api/auth/$'
@@ -26,14 +28,8 @@ const ProtectedByLoginRouteRoute = ProtectedByLoginRouteRouteImport.update({
   id: '/_protected-by-login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthRegisterRoute = AuthRegisterRouteImport.update({
-  id: '/auth/register',
-  path: '/auth/register',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthLoginRoute = AuthLoginRouteImport.update({
-  id: '/auth/login',
-  path: '/auth/login',
+const AuthRouteRoute = AuthRouteRouteImport.update({
+  id: '/_auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProtectedByLoginTwoFactorRoute =
@@ -52,6 +48,21 @@ const ProtectedByLoginApiKeysRoute = ProtectedByLoginApiKeysRouteImport.update({
   id: '/api-keys',
   path: '/api-keys',
   getParentRoute: () => ProtectedByLoginRouteRoute,
+} as any)
+const AuthTwoFactorVerifyRoute = AuthTwoFactorVerifyRouteImport.update({
+  id: '/two-factor-verify',
+  path: '/two-factor-verify',
+  getParentRoute: () => AuthRouteRoute,
+} as any)
+const AuthSignUpRoute = AuthSignUpRouteImport.update({
+  id: '/sign-up',
+  path: '/sign-up',
+  getParentRoute: () => AuthRouteRoute,
+} as any)
+const AuthSignInRoute = AuthSignInRouteImport.update({
+  id: '/sign-in',
+  path: '/sign-in',
+  getParentRoute: () => AuthRouteRoute,
 } as any)
 const ProtectedByLoginProtectedByBybitRouteRoute =
   ProtectedByLoginProtectedByBybitRouteRouteImport.update({
@@ -90,11 +101,12 @@ const ProtectedByLoginProtectedByBybitChartRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof ProtectedByLoginProtectedByBybitIndexRoute
+  '/sign-in': typeof AuthSignInRoute
+  '/sign-up': typeof AuthSignUpRoute
+  '/two-factor-verify': typeof AuthTwoFactorVerifyRoute
   '/api-keys': typeof ProtectedByLoginApiKeysRoute
   '/no-bybit-api-key': typeof ProtectedByLoginNoBybitApiKeyRoute
   '/two-factor': typeof ProtectedByLoginTwoFactorRoute
-  '/auth/login': typeof AuthLoginRoute
-  '/auth/register': typeof AuthRegisterRoute
   '/chart': typeof ProtectedByLoginProtectedByBybitChartRoute
   '/history': typeof ProtectedByLoginProtectedByBybitHistoryRoute
   '/orders': typeof ProtectedByLoginProtectedByBybitOrdersRoute
@@ -102,11 +114,12 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof ProtectedByLoginProtectedByBybitIndexRoute
+  '/sign-in': typeof AuthSignInRoute
+  '/sign-up': typeof AuthSignUpRoute
+  '/two-factor-verify': typeof AuthTwoFactorVerifyRoute
   '/api-keys': typeof ProtectedByLoginApiKeysRoute
   '/no-bybit-api-key': typeof ProtectedByLoginNoBybitApiKeyRoute
   '/two-factor': typeof ProtectedByLoginTwoFactorRoute
-  '/auth/login': typeof AuthLoginRoute
-  '/auth/register': typeof AuthRegisterRoute
   '/chart': typeof ProtectedByLoginProtectedByBybitChartRoute
   '/history': typeof ProtectedByLoginProtectedByBybitHistoryRoute
   '/orders': typeof ProtectedByLoginProtectedByBybitOrdersRoute
@@ -114,13 +127,15 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/_auth': typeof AuthRouteRouteWithChildren
   '/_protected-by-login': typeof ProtectedByLoginRouteRouteWithChildren
   '/_protected-by-login/_protected-by-bybit': typeof ProtectedByLoginProtectedByBybitRouteRouteWithChildren
+  '/_auth/sign-in': typeof AuthSignInRoute
+  '/_auth/sign-up': typeof AuthSignUpRoute
+  '/_auth/two-factor-verify': typeof AuthTwoFactorVerifyRoute
   '/_protected-by-login/api-keys': typeof ProtectedByLoginApiKeysRoute
   '/_protected-by-login/no-bybit-api-key': typeof ProtectedByLoginNoBybitApiKeyRoute
   '/_protected-by-login/two-factor': typeof ProtectedByLoginTwoFactorRoute
-  '/auth/login': typeof AuthLoginRoute
-  '/auth/register': typeof AuthRegisterRoute
   '/_protected-by-login/_protected-by-bybit/chart': typeof ProtectedByLoginProtectedByBybitChartRoute
   '/_protected-by-login/_protected-by-bybit/history': typeof ProtectedByLoginProtectedByBybitHistoryRoute
   '/_protected-by-login/_protected-by-bybit/orders': typeof ProtectedByLoginProtectedByBybitOrdersRoute
@@ -131,11 +146,12 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/sign-in'
+    | '/sign-up'
+    | '/two-factor-verify'
     | '/api-keys'
     | '/no-bybit-api-key'
     | '/two-factor'
-    | '/auth/login'
-    | '/auth/register'
     | '/chart'
     | '/history'
     | '/orders'
@@ -143,24 +159,27 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/sign-in'
+    | '/sign-up'
+    | '/two-factor-verify'
     | '/api-keys'
     | '/no-bybit-api-key'
     | '/two-factor'
-    | '/auth/login'
-    | '/auth/register'
     | '/chart'
     | '/history'
     | '/orders'
     | '/api/auth/$'
   id:
     | '__root__'
+    | '/_auth'
     | '/_protected-by-login'
     | '/_protected-by-login/_protected-by-bybit'
+    | '/_auth/sign-in'
+    | '/_auth/sign-up'
+    | '/_auth/two-factor-verify'
     | '/_protected-by-login/api-keys'
     | '/_protected-by-login/no-bybit-api-key'
     | '/_protected-by-login/two-factor'
-    | '/auth/login'
-    | '/auth/register'
     | '/_protected-by-login/_protected-by-bybit/chart'
     | '/_protected-by-login/_protected-by-bybit/history'
     | '/_protected-by-login/_protected-by-bybit/orders'
@@ -169,9 +188,8 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  AuthRouteRoute: typeof AuthRouteRouteWithChildren
   ProtectedByLoginRouteRoute: typeof ProtectedByLoginRouteRouteWithChildren
-  AuthLoginRoute: typeof AuthLoginRoute
-  AuthRegisterRoute: typeof AuthRegisterRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -184,18 +202,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedByLoginRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/auth/register': {
-      id: '/auth/register'
-      path: '/auth/register'
-      fullPath: '/auth/register'
-      preLoaderRoute: typeof AuthRegisterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth/login': {
-      id: '/auth/login'
-      path: '/auth/login'
-      fullPath: '/auth/login'
-      preLoaderRoute: typeof AuthLoginRouteImport
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_protected-by-login/two-factor': {
@@ -218,6 +229,27 @@ declare module '@tanstack/react-router' {
       fullPath: '/api-keys'
       preLoaderRoute: typeof ProtectedByLoginApiKeysRouteImport
       parentRoute: typeof ProtectedByLoginRouteRoute
+    }
+    '/_auth/two-factor-verify': {
+      id: '/_auth/two-factor-verify'
+      path: '/two-factor-verify'
+      fullPath: '/two-factor-verify'
+      preLoaderRoute: typeof AuthTwoFactorVerifyRouteImport
+      parentRoute: typeof AuthRouteRoute
+    }
+    '/_auth/sign-up': {
+      id: '/_auth/sign-up'
+      path: '/sign-up'
+      fullPath: '/sign-up'
+      preLoaderRoute: typeof AuthSignUpRouteImport
+      parentRoute: typeof AuthRouteRoute
+    }
+    '/_auth/sign-in': {
+      id: '/_auth/sign-in'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof AuthSignInRouteImport
+      parentRoute: typeof AuthRouteRoute
     }
     '/_protected-by-login/_protected-by-bybit': {
       id: '/_protected-by-login/_protected-by-bybit'
@@ -264,6 +296,22 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthRouteRouteChildren {
+  AuthSignInRoute: typeof AuthSignInRoute
+  AuthSignUpRoute: typeof AuthSignUpRoute
+  AuthTwoFactorVerifyRoute: typeof AuthTwoFactorVerifyRoute
+}
+
+const AuthRouteRouteChildren: AuthRouteRouteChildren = {
+  AuthSignInRoute: AuthSignInRoute,
+  AuthSignUpRoute: AuthSignUpRoute,
+  AuthTwoFactorVerifyRoute: AuthTwoFactorVerifyRoute,
+}
+
+const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
+  AuthRouteRouteChildren,
+)
+
 interface ProtectedByLoginProtectedByBybitRouteRouteChildren {
   ProtectedByLoginProtectedByBybitChartRoute: typeof ProtectedByLoginProtectedByBybitChartRoute
   ProtectedByLoginProtectedByBybitHistoryRoute: typeof ProtectedByLoginProtectedByBybitHistoryRoute
@@ -309,9 +357,8 @@ const ProtectedByLoginRouteRouteWithChildren =
   )
 
 const rootRouteChildren: RootRouteChildren = {
+  AuthRouteRoute: AuthRouteRouteWithChildren,
   ProtectedByLoginRouteRoute: ProtectedByLoginRouteRouteWithChildren,
-  AuthLoginRoute: AuthLoginRoute,
-  AuthRegisterRoute: AuthRegisterRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport

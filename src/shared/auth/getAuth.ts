@@ -33,12 +33,12 @@ function createAuth() {
 
 type AuthInstance = ReturnType<typeof createAuth>;
 
-let _auth: AuthInstance | undefined;
+let auth: AuthInstance | undefined;
 
 export function getAuth(): AuthInstance {
- if (!_auth) {
-  _auth = createAuth();
+ if (!auth) {
+  auth = createAuth();
  }
 
- return _auth;
+ return auth;
 }

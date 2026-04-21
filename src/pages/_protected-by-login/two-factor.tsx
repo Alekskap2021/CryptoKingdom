@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
+import { authClient } from "@/shared/auth";
 import { Button, Card, CardHeader, CardTitle, Input, Label } from "@/shared/ui";
 import { Badge } from "@/shared/ui/badge";
-import { authClient } from "@/features/Authentication";
 
 type TwoFactorStep = "confirm" | "idle" | "setup";
 

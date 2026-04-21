@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { getSession } from "../helpers/getSession";
+import { getSession } from "../../helpers/getSession";
 import { createBybitClient, normalizeBybitError } from "./client";
 
 export const amendOrderSchema = z.object({

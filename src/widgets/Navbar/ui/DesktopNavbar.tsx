@@ -1,9 +1,9 @@
 import { Link, useNavigate, useRouteContext } from "@tanstack/react-router";
 import { LogOut } from "lucide-react";
+import { authClient } from "@/shared/auth";
 import { cn } from "@/shared/lib/cn";
 import { Button } from "@/shared/ui";
 import { Logo } from "@/shared/ui/Logo.tsx";
-import { authClient } from "@/features/Authentication";
 import { navbarConfig } from "../configs/navbarConfig";
 
 interface DesktopNavbarProps {
@@ -18,7 +18,7 @@ export const DesktopNavbar = (props: DesktopNavbarProps) => {
 
  async function handleLogout() {
   await authClient.signOut();
-  await navigate({ to: "/auth/login" });
+  await navigate({ to: "/sign-in" });
  }
 
  return (
