@@ -1,7 +1,13 @@
-import { Check, Pencil, Trash2, X } from "lucide-react";
+import { RadioGroup } from "@base-ui/react/radio-group";
+import { Link, useRouteContext } from "@tanstack/react-router";
+import { Pencil, Trash2 } from "lucide-react";
 import { useState } from "react";
-import { Badge, Button, Card, Input } from "@/shared/ui";
-import { deleteApiKey, updateApiKey } from "../api/api-keys.actions.ts";
+import { cn } from "@/shared/lib/cn.ts";
+import { Cookie } from "@/shared/lib/Cookie.ts";
+import { Badge, Button, Card } from "@/shared/ui";
+import { Radio } from "@/shared/ui/Radio.tsx";
+import { deleteApiKey } from "../api/api-keys.actions.ts";
+import { SELECTED_API_KEY_STORAGE_KEY } from "../config/const.ts";
 import type { ApiKeyRecord } from "../model/schema.ts";
 
 interface ApiKeyListProps {
@@ -11,9 +17,17 @@ interface ApiKeyListProps {
 
 export const ApiKeyList = (props: ApiKeyListProps) => {
  const { keys, onRefresh } = props;
- const [editingId, setEditingId] = useState<null | string>(null);
- const [editLabel, setEditLabel] = useState("");
  const [error, setError] = useState<null | string>(null);
+ const { selectedApiKeyId } = useRouteContext({
+  from: "/_protected-by-login",
+ });
+
+ const [selectedKey, setSelectedKey] = useState(selectedApiKeyId);
+
+ const handleSelectedKeyChange = (keyId: string | undefined) => {
+  setSelectedKey(keyId);
+  Cookie.set(SELECTED_API_KEY_STORAGE_KEY, keyId ?? "");
+ };
 
  async function handleDelete(id: string) {
   if (!confirm("Are you sure you want to delete this API key?")) return;
@@ -26,64 +40,49 @@ export const ApiKeyList = (props: ApiKeyListProps) => {
   }
  }
 
- function startEditing(key: ApiKeyRecord) {
-  setEditingId(key.id);
-  setEditLabel(key.label);
- }
-
- async function handleUpdate(id: string) {
-  setError(null);
-  try {
-   await updateApiKey({ data: { id, label: editLabel } });
-   setEditingId(null);
-   await onRefresh?.();
-  } catch (err) {
-   setError(err instanceof Error ? err.message : "Failed to update key.");
-  }
- }
-
  return (
-  <div className="space-y-3">
+  <>
    {error && <p className="text-sm text-red-600">{error}</p>}
-   {keys.map((key) => (
-    <Card key={key.id}>
-     <div className="flex items-center justify-between gap-4">
-      <div className="min-w-0 flex-1">
-       {editingId === key.id ? (
-        <div className="flex items-center gap-2">
-         <Input
-          className="max-w-48"
-          onChange={(e) => setEditLabel(e.target.value)}
-          onKeyDown={(e) => {
-           if (e.key === "Enter") void handleUpdate(key.id);
-           if (e.key === "Escape") setEditingId(null);
-          }}
-          value={editLabel}
-         />
-         <Button onClick={() => handleUpdate(key.id)} size="icon" variant="ghost">
-          <Check size={16} />
-         </Button>
-         <Button onClick={() => setEditingId(null)} size="icon" variant="ghost">
-          <X size={16} />
-         </Button>
-        </div>
-       ) : (
+   <RadioGroup
+    className="space-y-3"
+    disabled={keys.length === 1}
+    value={selectedKey}
+    onValueChange={handleSelectedKeyChange}>
+    {keys.map((key) => (
+     <Card
+      key={key.id}
+      className={cn("transition-colors", { "border-teal-400/50": key.id === selectedKey })}>
+      <Radio
+       className="peer flex items-center justify-between gap-4"
+       value={key.id}
+       disabled={keys.length === 1}>
+       <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-medium text-slate-100">{key.label}</p>
-       )}
-       <p className="mt-0.5 font-mono text-xs text-slate-400">{key.maskedKey}</p>
-      </div>
-      <div className="flex items-center gap-2">
-       {key.testnet && <Badge variant="info">Testnet</Badge>}
-       <Button onClick={() => startEditing(key)} size="icon" title="Edit label" variant="ghost">
-        <Pencil size={16} />
-       </Button>
-       <Button onClick={() => handleDelete(key.id)} size="icon" title="Delete" variant="ghost">
-        <Trash2 className="text-red-500" size={16} />
-       </Button>
-      </div>
-     </div>
-    </Card>
-   ))}
-  </div>
+        <p className="mt-0.5 font-mono text-xs text-slate-400">{key.maskedKey}</p>
+       </div>
+       <div className="flex items-center gap-2">
+        {key.testnet && <Badge variant="info">Testnet</Badge>}
+
+        <Button
+         size="icon"
+         title="Edit label"
+         variant="ghost"
+         nativeButton={false}
+         render={
+          <Link to="." search={{ apiKeyId: key.id }}>
+           <Pencil size={16} />
+          </Link>
+         }
+        />
+
+        <Button onClick={() => handleDelete(key.id)} size="icon" title="Delete" variant="ghost">
+         <Trash2 className="text-red-500" size={16} />
+        </Button>
+       </div>
+      </Radio>
+     </Card>
+    ))}
+   </RadioGroup>
+  </>
  );
 };

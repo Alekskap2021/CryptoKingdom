@@ -1,5 +1,6 @@
 import { useRouteContext } from "@tanstack/react-router";
 import { ApiKeyAddForm, CreateApiKeyTrigger } from "./ApiKeyAddForm";
+import { ApiKeyEditForm } from "./ApiKeyEditForm.tsx";
 import { ApiKeyEmptyPlaceholder } from "./ApiKeyEmptyPlaceholder";
 import { ApiKeyList } from "./ApiKeyList";
 
@@ -19,6 +20,7 @@ export const ManageApiKey = () => {
    </div>
 
    <ApiKeyAddForm />
+   <ApiKeyEditForm />
 
    {apiKeysList.length > 0 ? <ApiKeyList keys={apiKeysList} /> : <ApiKeyEmptyPlaceholder />}
   </div>

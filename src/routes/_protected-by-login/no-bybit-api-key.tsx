@@ -1,10 +1,11 @@
 import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { KeyRound } from "lucide-react";
+import { getSelectedApiKey } from "@/features/ManageBybitApiKey";
 
 export const Route = createFileRoute("/_protected-by-login/no-bybit-api-key")({
- beforeLoad: async ({ context }) => {
-  const { apiKeysList } = context;
-  if (apiKeysList.length > 0) {
+ beforeLoad: async () => {
+  const selectedApiKeyId = getSelectedApiKey();
+  if (selectedApiKeyId) {
    throw redirect({ to: "/" });
   }
  },
