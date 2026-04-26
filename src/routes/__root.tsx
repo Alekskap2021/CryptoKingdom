@@ -4,10 +4,8 @@ import { HeadContent, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { NotFoundFallback } from "@/widgets/Fallbacks/NotFoundFallback";
 import { PendingFallback } from "@/widgets/Fallbacks/PendingFallback";
-// eslint-disable-next-line @conarti/feature-sliced/layers-slices
 import tanstackQueryDevtools from "@/app/devtools/tanstack-query";
 import type { RouterContext } from "@/app/providers/router-context.ts";
-// eslint-disable-next-line @conarti/feature-sliced/layers-slices
 import appCss from "@/app/styles/global.css?url";
 import type { ReactNode } from "react";
 

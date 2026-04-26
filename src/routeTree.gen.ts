@@ -8,21 +8,21 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './pages/__root'
-import { Route as ProtectedByLoginRouteRouteImport } from './pages/_protected-by-login/route'
-import { Route as AuthRouteRouteImport } from './pages/_auth/route'
-import { Route as ProtectedByLoginTwoFactorRouteImport } from './pages/_protected-by-login/two-factor'
-import { Route as ProtectedByLoginNoBybitApiKeyRouteImport } from './pages/_protected-by-login/no-bybit-api-key'
-import { Route as ProtectedByLoginApiKeysRouteImport } from './pages/_protected-by-login/api-keys'
-import { Route as AuthTwoFactorVerifyRouteImport } from './pages/_auth/two-factor-verify'
-import { Route as AuthSignUpRouteImport } from './pages/_auth/sign-up'
-import { Route as AuthSignInRouteImport } from './pages/_auth/sign-in'
-import { Route as ProtectedByLoginProtectedByBybitRouteRouteImport } from './pages/_protected-by-login/_protected-by-bybit/route'
-import { Route as ProtectedByLoginProtectedByBybitIndexRouteImport } from './pages/_protected-by-login/_protected-by-bybit/index'
-import { Route as ApiAuthSplatRouteImport } from './pages/api/auth/$'
-import { Route as ProtectedByLoginProtectedByBybitOrdersRouteImport } from './pages/_protected-by-login/_protected-by-bybit/orders'
-import { Route as ProtectedByLoginProtectedByBybitHistoryRouteImport } from './pages/_protected-by-login/_protected-by-bybit/history'
-import { Route as ProtectedByLoginProtectedByBybitChartRouteImport } from './pages/_protected-by-login/_protected-by-bybit/chart'
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as ProtectedByLoginRouteRouteImport } from './routes/_protected-by-login/route'
+import { Route as AuthRouteRouteImport } from './routes/_auth/route'
+import { Route as ProtectedByLoginTwoFactorRouteImport } from './routes/_protected-by-login/two-factor'
+import { Route as ProtectedByLoginNoBybitApiKeyRouteImport } from './routes/_protected-by-login/no-bybit-api-key'
+import { Route as ProtectedByLoginApiKeysRouteImport } from './routes/_protected-by-login/api-keys'
+import { Route as AuthTwoFactorVerifyRouteImport } from './routes/_auth/two-factor-verify'
+import { Route as AuthSignUpRouteImport } from './routes/_auth/sign-up'
+import { Route as AuthSignInRouteImport } from './routes/_auth/sign-in'
+import { Route as ProtectedByLoginProtectedByBybitRouteRouteImport } from './routes/_protected-by-login/_protected-by-bybit/route'
+import { Route as ProtectedByLoginProtectedByBybitIndexRouteImport } from './routes/_protected-by-login/_protected-by-bybit/index'
+import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as ProtectedByLoginProtectedByBybitOrdersRouteImport } from './routes/_protected-by-login/_protected-by-bybit/orders'
+import { Route as ProtectedByLoginProtectedByBybitHistoryRouteImport } from './routes/_protected-by-login/_protected-by-bybit/history'
+import { Route as ProtectedByLoginProtectedByBybitChartRouteImport } from './routes/_protected-by-login/_protected-by-bybit/chart'
 
 const ProtectedByLoginRouteRoute = ProtectedByLoginRouteRouteImport.update({
   id: '/_protected-by-login',
@@ -365,7 +365,7 @@ export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
 
-import type { getRouter } from './app/router.tsx'
+import type { getRouter } from './router.tsx'
 import type { createStart } from '@tanstack/react-start'
 declare module '@tanstack/react-start' {
   interface Register {
