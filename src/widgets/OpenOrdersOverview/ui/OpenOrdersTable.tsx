@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouteContext } from "@tanstack/react-router";
 import {
  createColumnHelper,
  getCoreRowModel,
@@ -39,14 +39,13 @@ const orderColumns = [
  }),
 ];
 
-interface OpenOrdersTableProps {
- apiKeyId?: string;
-}
+export const OpenOrdersTable = () => {
+ const { selectedApiKeyId } = useRouteContext({
+  from: "/_protected-by-login/_protected-by-bybit/",
+ });
 
-export const OpenOrdersTable = (props: OpenOrdersTableProps) => {
- const { apiKeyId } = props;
  const [sorting, setSorting] = useState<SortingState>([]);
- const { data, isError, isLoading } = useQueryOpenOrders({ apiKeyId });
+ const { data, isError, isLoading } = useQueryOpenOrders({ apiKeyId: selectedApiKeyId });
 
  const table = useReactTable({
   columns: orderColumns,

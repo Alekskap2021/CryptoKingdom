@@ -1,5 +1,6 @@
 import { Form } from "@base-ui/react/form";
-import { useNavigate, useSearch } from "@tanstack/react-router";
+import { Link, useNavigate, useSearch } from "@tanstack/react-router";
+import { Pencil } from "lucide-react";
 import { useValidateForm } from "@/shared/hooks/useValidateForm.ts";
 import { Button, Input } from "@/shared/ui";
 import { Dialog } from "@/shared/ui/Dialog.tsx";
@@ -9,18 +10,50 @@ import { type ApiKeyUpdateInput, apiKeyUpdateSchema } from "../model/schema.ts";
 
 const editKeyTrigger = Dialog.createHandle();
 
+interface EditApiKeyTriggerProps {
+ id: string;
+}
+
+export const EditApiKeyTrigger = (props: EditApiKeyTriggerProps) => (
+ <Button
+  size="icon"
+  title="Edit label"
+  variant="ghost"
+  nativeButton={false}
+  render={
+   <Link to="." search={{ apiKeyId: props.id, modal: "edit" }} replace>
+    <Pencil size={16} />
+   </Link>
+  }
+ />
+);
+
 export const ApiKeyEditForm = () => {
- const { apiKeyId } = useSearch({ from: "/_protected-by-login/api-keys" });
+ const { apiKeyId, modal } = useSearch({ from: "/_protected-by-login/api-keys" });
  const navigate = useNavigate({ from: "/api-keys" });
 
  const { isPending, mutateAsync } = useMutateEditApiKey();
  const { errors, validateForm } = useValidateForm(apiKeyUpdateSchema);
 
+ const openHandler = (open: boolean) => {
+  if (!open) {
+   navigate({
+    replace: true,
+    search: (prev) => ({
+     ...prev,
+     apiKeyId: undefined,
+     modal: undefined,
+    }),
+    to: ".",
+   });
+  }
+ };
+
  return (
   <Dialog
    handle={editKeyTrigger}
-   open={Boolean(apiKeyId)}
-   onOpenChange={(open) => !open && navigate({ search: { apiKeyId: undefined }, to: "." })}>
+   open={modal === "edit" && Boolean(apiKeyId)}
+   onOpenChange={openHandler}>
    <Dialog.Content className="w-1/3">
     <div className="start mb-5 flex flex-col items-start gap-3">
      <Dialog.Title className="text-left">Edit your API Key</Dialog.Title>

@@ -8,11 +8,6 @@ export const apiKeySchema = z.object({
 });
 export type ApiKeyInput = z.infer<typeof apiKeySchema>;
 
-export const apiKeyUpdateSchema = z.object({
- label: z.string().min(1, "Label is required").max(64),
-});
-export type ApiKeyUpdateInput = z.infer<typeof apiKeyUpdateSchema>;
-
 export interface ApiKeyRecord {
  createdAt: string;
  id: string;
@@ -21,9 +16,4 @@ export interface ApiKeyRecord {
  testnet: boolean;
  updatedAt: string;
  userId: string;
-}
-
-export interface ApiKeyWithSecrets extends ApiKeyRecord {
- encryptedApiKey: string;
- encryptedApiSecret: string;
 }

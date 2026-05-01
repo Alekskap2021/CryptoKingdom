@@ -23,6 +23,7 @@ import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as ProtectedByLoginProtectedByBybitOrdersRouteImport } from './routes/_protected-by-login/_protected-by-bybit/orders'
 import { Route as ProtectedByLoginProtectedByBybitHistoryRouteImport } from './routes/_protected-by-login/_protected-by-bybit/history'
 import { Route as ProtectedByLoginProtectedByBybitChartRouteImport } from './routes/_protected-by-login/_protected-by-bybit/chart'
+import { Route as ProtectedByLoginProtectedByBybitAutomationRouteImport } from './routes/_protected-by-login/_protected-by-bybit/automation'
 
 const ProtectedByLoginRouteRoute = ProtectedByLoginRouteRouteImport.update({
   id: '/_protected-by-login',
@@ -98,6 +99,12 @@ const ProtectedByLoginProtectedByBybitChartRoute =
     path: '/chart',
     getParentRoute: () => ProtectedByLoginProtectedByBybitRouteRoute,
   } as any)
+const ProtectedByLoginProtectedByBybitAutomationRoute =
+  ProtectedByLoginProtectedByBybitAutomationRouteImport.update({
+    id: '/automation',
+    path: '/automation',
+    getParentRoute: () => ProtectedByLoginProtectedByBybitRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof ProtectedByLoginProtectedByBybitIndexRoute
@@ -107,6 +114,7 @@ export interface FileRoutesByFullPath {
   '/api-keys': typeof ProtectedByLoginApiKeysRoute
   '/no-bybit-api-key': typeof ProtectedByLoginNoBybitApiKeyRoute
   '/two-factor': typeof ProtectedByLoginTwoFactorRoute
+  '/automation': typeof ProtectedByLoginProtectedByBybitAutomationRoute
   '/chart': typeof ProtectedByLoginProtectedByBybitChartRoute
   '/history': typeof ProtectedByLoginProtectedByBybitHistoryRoute
   '/orders': typeof ProtectedByLoginProtectedByBybitOrdersRoute
@@ -120,6 +128,7 @@ export interface FileRoutesByTo {
   '/api-keys': typeof ProtectedByLoginApiKeysRoute
   '/no-bybit-api-key': typeof ProtectedByLoginNoBybitApiKeyRoute
   '/two-factor': typeof ProtectedByLoginTwoFactorRoute
+  '/automation': typeof ProtectedByLoginProtectedByBybitAutomationRoute
   '/chart': typeof ProtectedByLoginProtectedByBybitChartRoute
   '/history': typeof ProtectedByLoginProtectedByBybitHistoryRoute
   '/orders': typeof ProtectedByLoginProtectedByBybitOrdersRoute
@@ -136,6 +145,7 @@ export interface FileRoutesById {
   '/_protected-by-login/api-keys': typeof ProtectedByLoginApiKeysRoute
   '/_protected-by-login/no-bybit-api-key': typeof ProtectedByLoginNoBybitApiKeyRoute
   '/_protected-by-login/two-factor': typeof ProtectedByLoginTwoFactorRoute
+  '/_protected-by-login/_protected-by-bybit/automation': typeof ProtectedByLoginProtectedByBybitAutomationRoute
   '/_protected-by-login/_protected-by-bybit/chart': typeof ProtectedByLoginProtectedByBybitChartRoute
   '/_protected-by-login/_protected-by-bybit/history': typeof ProtectedByLoginProtectedByBybitHistoryRoute
   '/_protected-by-login/_protected-by-bybit/orders': typeof ProtectedByLoginProtectedByBybitOrdersRoute
@@ -152,6 +162,7 @@ export interface FileRouteTypes {
     | '/api-keys'
     | '/no-bybit-api-key'
     | '/two-factor'
+    | '/automation'
     | '/chart'
     | '/history'
     | '/orders'
@@ -165,6 +176,7 @@ export interface FileRouteTypes {
     | '/api-keys'
     | '/no-bybit-api-key'
     | '/two-factor'
+    | '/automation'
     | '/chart'
     | '/history'
     | '/orders'
@@ -180,6 +192,7 @@ export interface FileRouteTypes {
     | '/_protected-by-login/api-keys'
     | '/_protected-by-login/no-bybit-api-key'
     | '/_protected-by-login/two-factor'
+    | '/_protected-by-login/_protected-by-bybit/automation'
     | '/_protected-by-login/_protected-by-bybit/chart'
     | '/_protected-by-login/_protected-by-bybit/history'
     | '/_protected-by-login/_protected-by-bybit/orders'
@@ -293,6 +306,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedByLoginProtectedByBybitChartRouteImport
       parentRoute: typeof ProtectedByLoginProtectedByBybitRouteRoute
     }
+    '/_protected-by-login/_protected-by-bybit/automation': {
+      id: '/_protected-by-login/_protected-by-bybit/automation'
+      path: '/automation'
+      fullPath: '/automation'
+      preLoaderRoute: typeof ProtectedByLoginProtectedByBybitAutomationRouteImport
+      parentRoute: typeof ProtectedByLoginProtectedByBybitRouteRoute
+    }
   }
 }
 
@@ -313,6 +333,7 @@ const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
 )
 
 interface ProtectedByLoginProtectedByBybitRouteRouteChildren {
+  ProtectedByLoginProtectedByBybitAutomationRoute: typeof ProtectedByLoginProtectedByBybitAutomationRoute
   ProtectedByLoginProtectedByBybitChartRoute: typeof ProtectedByLoginProtectedByBybitChartRoute
   ProtectedByLoginProtectedByBybitHistoryRoute: typeof ProtectedByLoginProtectedByBybitHistoryRoute
   ProtectedByLoginProtectedByBybitOrdersRoute: typeof ProtectedByLoginProtectedByBybitOrdersRoute
@@ -321,6 +342,8 @@ interface ProtectedByLoginProtectedByBybitRouteRouteChildren {
 
 const ProtectedByLoginProtectedByBybitRouteRouteChildren: ProtectedByLoginProtectedByBybitRouteRouteChildren =
   {
+    ProtectedByLoginProtectedByBybitAutomationRoute:
+      ProtectedByLoginProtectedByBybitAutomationRoute,
     ProtectedByLoginProtectedByBybitChartRoute:
       ProtectedByLoginProtectedByBybitChartRoute,
     ProtectedByLoginProtectedByBybitHistoryRoute:

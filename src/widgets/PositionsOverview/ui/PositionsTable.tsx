@@ -1,3 +1,4 @@
+import { useRouteContext } from "@tanstack/react-router";
 import {
  createColumnHelper,
  getCoreRowModel,
@@ -57,14 +58,13 @@ const positionColumns = [
  }),
 ];
 
-interface PositionsTableProps {
- apiKeyId?: string;
-}
+export const PositionsTable = () => {
+ const { selectedApiKeyId } = useRouteContext({
+  from: "/_protected-by-login/_protected-by-bybit/",
+ });
 
-export const PositionsTable = (props: PositionsTableProps) => {
- const { apiKeyId } = props;
  const [sorting, setSorting] = useState<SortingState>([]);
- const { data, isError, isLoading } = useQueryPositions({ apiKeyId });
+ const { data, isError, isLoading } = useQueryPositions({ apiKeyId: selectedApiKeyId });
 
  const table = useReactTable({
   columns: positionColumns,

@@ -1,8 +1,8 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { authMiddleware } from "@/shared/auth/server";
+import { getSelectedApiKey } from "@/shared/helpers/getSelectedApiKey.ts";
 import { getSession } from "@/shared/helpers/getSession";
 import { Logo } from "@/shared/ui/Logo.tsx";
-import { getSelectedApiKey, listApiKeys } from "@/features/ManageBybitApiKey";
 import { Navbar } from "@/widgets/Navbar";
 
 function MainLayout() {
@@ -26,11 +26,9 @@ function MainLayout() {
 export const Route = createFileRoute("/_protected-by-login")({
  beforeLoad: async () => {
   const session = await getSession();
-  const apiKeysList = await listApiKeys();
   const selectedApiKeyId = getSelectedApiKey();
 
   return {
-   apiKeysList,
    selectedApiKeyId,
    user: session.user,
   };

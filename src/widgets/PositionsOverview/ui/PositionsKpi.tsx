@@ -1,15 +1,13 @@
+import { useRouteContext } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { KpiCard } from "@/shared/ui/KpiCard.tsx";
 import { useQueryPositions } from "../hooks/useQueryPositions.ts";
 
-interface PositionsKpiProps {
- apiKeyId?: string;
-}
-
-export const PositionsKpi = (props: PositionsKpiProps) => {
- const { apiKeyId } = props;
-
- const { data, isLoading } = useQueryPositions({ apiKeyId });
+export const PositionsKpi = () => {
+ const { selectedApiKeyId } = useRouteContext({
+  from: "/_protected-by-login/_protected-by-bybit/",
+ });
+ const { data, isLoading } = useQueryPositions({ apiKeyId: selectedApiKeyId });
 
  return (
   <KpiCard

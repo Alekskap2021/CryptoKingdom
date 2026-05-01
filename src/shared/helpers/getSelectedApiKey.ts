@@ -1,7 +1,7 @@
 import { createIsomorphicFn } from "@tanstack/react-start";
 import { getCookie } from "@tanstack/react-start/server";
-import { Cookie } from "@/shared/lib/Cookie.ts";
 import { SELECTED_API_KEY_STORAGE_KEY } from "../config/const";
+import { Cookie } from "../lib/Cookie.ts";
 
 export const getSelectedApiKey = createIsomorphicFn()
  .client(() => {

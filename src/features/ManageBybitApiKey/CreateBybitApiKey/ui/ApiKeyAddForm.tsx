@@ -8,7 +8,7 @@ import { Field } from "@/shared/ui/Field.tsx";
 import { useMutateAddApiKey } from "../hooks/useMutateAddApiKey.ts";
 import { type ApiKeyInput, apiKeySchema } from "../model/schema.ts";
 
-const createFormTrigger = Dialog.createHandle();
+export const createFormTrigger = Dialog.createHandle();
 
 export const CreateApiKeyTrigger = () => {
  return (
